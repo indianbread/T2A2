@@ -1,24 +1,150 @@
-# README
+# Korean Skin Care (KSC) Marketplace
+# changes
+## Overview
+The Korean Skin Care (KSC) Marketplace is a two-way marketplace application for users to buy and sell Korean skin care products.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Purpose and target audience
+The Korean skin care regimen is well known for recommending the use of multiple products layered on top of each other. It is not uncommon for consumers of skin care products to purchase multiple items at a time. However, some of these items may end up being discarded before the product has been exhausted for various reasons:  
 
-Things you may want to cover:
+* Users have multiples of the same type of product and no longer wish to use them
+* Allergic reactions
+* Cosmetic issues where the user does not like the product's feel, fragrance or appearance on their skin
+* Product is not suitable for purchaser's skin type
 
-* Ruby version
+To reduce wastage, improve sustainability and minimize impact to the environment, KSC was developed to allow users of Korean skin care to sell their unwanted skin care. KSC will accept products that have not reached their expiry date, have not been opened, or have not been used more than half way. KSC is not intended for commercial use.
 
-* System dependencies
+In the case where a product has already been opened and/or used, proof of purchase date in the form of a receipt must be supplied. This is to avoid the incidence of an expired product being sold.
 
-* Configuration
+### Functionality / features
 
-* Database creation
+**Features**
+* Administrator dashboard
+  * Manage users - view, edit user details (including adding/removing admin privileges) and delete users
+  * Manage listings - admin should have access to modify and delete all listings
+  * User dashboard
+    * View purchase history - order number, products purchased, product summary, product listing owner, transaction date
+    * Manage listings - view current listings, edit listing details, delete listings
+    * Manage account - view profile, edit profile, delete own account
+  * Product form for adding a new product to sell and editing product details
+  * Integration with Stripe payment
+  * Use of google maps API to show seller location
 
-* Database initialization
+If time permits, I would like to attempt to implement:
+* A shopping cart function
+* Searching, sorting and filtering functionality for listings
 
-* How to run the test suite
+### Sitemap
 
-* Services (job queues, cache servers, search engines, etc.)
+![Korean Skin Care Marketplace site map](/docs/KSC-sitemap.svg)
 
-* Deployment instructions
 
-* ...
+### Screenshots
+
+
+
+
+### Tech stack (e.g. html, css, deployment platform, etc)
+
+This site is built using HTML5, CSS, and the Ruby on Rails framework.
+It utilises Stripe as the payment platform, Amazon Web Services for image hosting and is deployed on Heroku.
+It uses the gem Devise for user authentication.
+
+
+
+R9	A link (URL) to your deployed app (i.e. website)
+R10	A link to your GitHub repository (repo).
+- Ensure the repo is accessible by your Educators
+R11	Description of your marketplace app (website), including:
+- Purpose
+- Functionality / features
+- Sitemap
+- Screenshots
+- Target audience
+- Tech stack (e.g. html, css, deployment platform, etc)
+R12	User stories for your app
+R13	Wireframes for your app
+
+## R14	Entity-Relationship Diagram
+![Entity-relationship diagram](/docs/rails-erd.svg)
+
+
+## R15	Explain the different high-level components (abstractions) in your app
+
+## R16	Detail any third party services that your app will use
+
+## R17	Describe your projects models in terms of the relationships (active record associations) they have with each other
+
+* product and category: 
+  * one category has many products
+  * one product belongs to one category
+
+* brand and product:
+  * one brand contains many products
+  * one product belongs to one brand
+
+* ingredients, products and product ingredients:
+  * one product has many ingredients
+  * one ingredient is in many products
+
+
+* user and user info:
+  * one user has one set of user information
+  * one row of user information belongs to one user
+
+* user and addresses:
+  * one user has many addresses
+  * one address belongs to one user
+
+* user and orders:
+  * one user has many orders
+  * one order belongs to one user
+
+* products and order lines:
+  * one order line has one product
+  * one product belongs to one order line
+
+* orders and order lines:
+  * one order can have many order lines
+  * one order line belongs to one order
+
+* user and products:
+  * one user can list many products
+  * one product belongs to one user
+
+
+## R18	Discuss the database relations to be implemented in your application  
+
+My database will have 10 tables, consisting of:
+ * 4 parent tables:  
+
+    * categories - to categorise the products (e.g. cleanser, moisturiser).   
+
+    * brands - each product will have a brand. I did not use manufacturer as the manufacturer name may differ from the brand name.  
+
+    * ingredients - I chose to put the ingredients in their own table rather than incorporate them into the product table as the same ingredients are used in many products.  
+
+    * users - this table will be generated by the gem Devise  
+
+ * 4 child tables: 
+
+    * products - this table will store the details of each product listing, and contain the brand_id as the foreign key. It will contain 1-2 images - 1 product image and 1 image of the purchase receipt for used products. I did not include the image columns in the product table as the images will use Rail's Active Storage functionality and therefore will not be stored in the database itself.  
+
+    * orders - this table will record the order details and the total amount of the order. Although the total amount will be calculated based on the price of the items I am choosing to store it in its own field to hopefully retrieve this information easily on the purchase summary page that I will be implementing.  
+
+    * user_infos: It was recommended that the users table generated by Devise not be modified as there has been difficulty retrieving information from user-generated fields via the controller. Therefore, I will be implementing a separate table to store the user information and administrator attribute to avoid potential issues. This table will have a one-to-one relationship with the Devise generated user table.  
+
+    *  addresses: I will be storing each user's address in a separate table as one user may have more than one address (billing and postal), and a user may not have any addresses recorded until they wish to purchase or sell an item.  
+
+ * 2 join tables:
+
+    * product_ingredients: one product will have multiple ingredients, and the same ingredients are in many products.
+
+   * order_lines: It is not ideal for the user to have to make one purchase at a time. To allow for multiple orders of multiple products to be processed in one transaction, I have included an order line table.
+
+
+## R19	Provide your database schema design
+
+
+## R20	Describe the way tasks are allocated and tracked in your project  
+
+I am using Trello to break down the project into small tasks and to keep track of the progress of each task. I have assigned a due date for each task to ensure that I am able to complete the project within the allocated time frame. I will not deviate from the initial scope that I have planned, but anticipate that I have missed some items initially which are required to complete my application so will add them at a later stage if required.

@@ -10,6 +10,8 @@ Brand:
 <%= product.brand.name %><br>
 Product Name:
 <%= product.name%><br>
+Date listed:
+<%= product.created_at.localtime.to_date%><br>
 Product Expiry:
 <% if product.expiry_date != nil %>
 <%= product.expiry_date%><br>
@@ -24,4 +26,5 @@ Description:
 <% end %>
 <br>
 <%= link_to 'Home', root_path %>
+<%= link_to 'Add New Product Listing', new_product_path %>
 

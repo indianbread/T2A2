@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 User.create(
   email: "test@test.com",
   password: "testtest"
@@ -27,5 +28,13 @@ Product.create(
   name: "Soft Moist Moisturising Cream",
   price: 19.95,
   description: "A light weight moisturising cream suitable for sensitive skin"
+)
+
+UserInfo.create(
+  user_id: 1,
+  first_name: "admin",
+  surname: "admin",
+  gender: 0,
+  admin: true
 )
 

@@ -1,0 +1,68 @@
+<%= form_with(model: product, local:true) do |form|%>
+ <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(toy.errors.count, "error") %> prohibited this product listing from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div><br>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div><br>
+
+  <div>
+      <%= form.label :category_id %>
+      <%= form.select :category_id, options_for_select( Category.all.collect { |u| [u.name, u.id] }, :selected => product.category_id ), {include_blank: 'Select Category'} %> 
+    </div>
+
+    <div>
+      <%= form.label :brand_id %>
+      <%= form.select :brand_id, options_for_select( Brand.all.collect { |u| [u.name, u.id] }, :selected => product.brand_id ), {include_blank: 'Select Brand'} %> 
+    </div>
+
+    Used:<br>
+
+     <% Product.useds.keys.each do |u|%>
+        <%= form.label u %>
+        <%= form.radio_button :used, u %>
+        <% if u == product.used %>
+        <% form.radio_button :used, :checked => true %>
+        <% end %>
+         <% end %>
+         <br>
+        <%= form.label :expiry_date %>
+        <%= form.date_field :expiry_date%>
+    </div>   
+   <div>
+        <%= form.label :price %> $
+        <%= form.number_field :price, min: 0 %>
+    </div>   
+
+    <div>
+    <%= form.label :picture %>
+    <%= form.file_field :picture, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>
+    </div>
+    <br>
+
+      <div>
+    <%= form.label :receipt %>
+    <%= form.file_field :receipt, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>
+    </div>
+    <br>
+
+   <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

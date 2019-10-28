@@ -6,6 +6,8 @@
 <p> <%= image_tag @product.picture if @product.picture.attached? %> </p>
 Listed by:
 <%= @product.user.email %><br>
+Date listed:
+<%= @product.created_at.localtime.to_date%><br>
 Category:
 <%= @product.category.name %><br>
 Brand:

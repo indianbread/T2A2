@@ -1,2 +1,7 @@
 <h1>Products#new</h1>
 <p>Find me in app/views/products/new.html.erb</p>
+
+<%= render 'form', product: @product %>
+
+<%= link_to 'View Product listings', products_path %>
+<%= link_to 'Home', root_path %>

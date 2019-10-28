@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only:[ :edit, :new, :update, :delete]
-  before_action :set_product, only:[ :show]
+  before_action :set_product, only:[ :show, :edit, :update, :delete]
 
   def index
     @products = Product.where(nil)
@@ -14,6 +14,15 @@ class ProductsController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to @product
+    else
+      render :edit
+    end
+
   end
 
   def new

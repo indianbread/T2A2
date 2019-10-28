@@ -46,7 +46,7 @@
     </div>   
    <div>
         <%= form.label :price %> $
-        <%= form.number_field :price, min: 0 %>
+        <%= form.number_field :price, step: :any, min: 0 %>
     </div>   
 
     <div>
@@ -60,7 +60,7 @@
     <%= form.file_field :receipt, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>
     </div>
     <br>
-
+''
    <div class="actions">
     <%= form.submit %>
   </div>

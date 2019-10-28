@@ -1,0 +1,28 @@
+<h1>Products#show</h1>
+<p>Find me in app/views/products/show.html.erb</p>
+
+<h1>Viewing information for <%= @product.brand.name %> <%= @product.name %></h1>
+
+<p> <%= image_tag @product.picture if @product.picture.attached? %> </p>
+Listed by:
+<%= @product.user.email %><br>
+Category:
+<%= @product.category.name %><br>
+Brand:
+<%= @product.brand.name %><br>
+Product Name:
+<%= @product.name %><br>
+Product Expiry:
+<% if @product.expiry_date != nil %>
+<%= @product.expiry_date %><br>
+<% else %>
+N/A<br>
+<% end %>
+Purchase receipt:
+<%= image_tag @product.receipt if @product.receipt.attached? %><br>
+Price:
+<%= number_to_currency(@product.price) %><br>
+Description:
+<%= @product.description %><br>
+
+<%= link_to 'View Listings', products_path %>

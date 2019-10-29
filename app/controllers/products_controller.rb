@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only:[ :edit, :new, :update, :delete]
-  before_action :set_product, only:[ :show, :edit, :update, :delete]
+  before_action :set_product, only:[ :show, :edit, :update, :destroy]
+  # before_action :set_user_products, only: [ :edit, :update, :delete ]
 
   def index
     @products = Product.where(nil)
@@ -14,6 +15,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    authorize! :update, @product
   end
 
   def update
@@ -27,20 +29,25 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.user_id = current_user
+    
   end
 
   def create
     @product = current_user.products.new(product_params)
 
     if @product.save
-      redirect to @product
+      redirect_to @product
     else
       render :new
   end
 end
 
-  def delete
+  def destroy
+    authorize! :destroy, @product
+    @product.destroy
+    redirect_to products_path, notice: 'Product listing was successfully deleted'
+
+
   end
 
   private
@@ -52,6 +59,10 @@ end
   def set_product
     id = params[:id]
     @product = Product.find(id)
+  end
+
+  def set_user_products
+    @product = current_user.products.find_by_id(params[:id])
   end
 
   def filtering_params(params)

@@ -49,12 +49,15 @@
         <%= form.number_field :price, step: :any, min: 0 %>
     </div>   
 
+<%= image_tag product.picture if product.picture.attached? %>
+
     <div>
     <%= form.label :picture %>
     <%= form.file_field :picture, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>
     </div>
     <br>
 
+<%= image_tag product.receipt if product.receipt.attached? %>
       <div>
     <%= form.label :receipt %>
     <%= form.file_field :receipt, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>

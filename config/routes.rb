@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'brands/index'
+  get 'brands/edit'
+  get 'brands/new'
+  get 'brands/destroy'
   get 'user_infos/index'
   get 'user_infos/show'
   get 'user_infos/edit'
@@ -29,6 +33,12 @@ Rails.application.routes.draw do
   post '/categories', to:'categories#create'
   
   get '/users/:id/user_infos', to:"user_infos#index", as: "user_user_info"
+  patch '/users/:id/user_infos', to:"user_infos#update"
+  delete '/users/:id/user_infos', to:"user_infos#destroy"
+  get '/users/:id/user_infos/edit', to:"user_infos#edit", as: "edit_user_user_info"
+  get '/users/:id/user_infos/new', to:"user_infos#new", as: "new_user_user_info"
+  post '/users/:id/user_infos', to:"user_infos#index", as: "user_user_info"
+
  
 
 

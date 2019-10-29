@@ -8,4 +8,6 @@ class User < ApplicationRecord
   has_many :orders
   has_many :addresses
 
+  # accepts_nested_attributes_for :user_info, :address
+
 end

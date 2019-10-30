@@ -1,7 +1,7 @@
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
 
-<h1>Viewing information for <%= @product.brand.name %> <%= @product.name %></h1>
+<h1>Viewing information for <%= @brand.name %> <%= @product.name %></h1>
 
 <p> <%= image_tag @product.picture if @product.picture.attached? %> </p>
 Listed by:
@@ -9,17 +9,23 @@ Listed by:
 Date listed:
 <%= @product.created_at.localtime.to_date%><br>
 Category:
-<%= @product.category.name %><br>
+<%= @category.name %><br>
 Brand:
-<%= @product.brand.name %><br>
+<%= @brand.name %><br>
 Product Name:
 <%= @product.name %><br>
-Product Expiry:
-<% if @product.expiry_date != nil %>
-<%= @product.expiry_date %><br>
+Notable Ingredients:
+<% @ingredients.each_with_index do |ingredient, index| %>
+<% if @ingredients.length > 1 && ((index + 1) < @ingredients.length)%>
+<% separator = ", "%>
 <% else %>
-N/A<br>
+<% separator = "" %>
 <% end %>
+<%= ingredient.name%><%= separator %>
+<% end %>
+<br>
+Product Expiry:
+<%= @product.expiry_date %><br>
 Purchase receipt:
 <%= image_tag @product.receipt if @product.receipt.attached? %><br>
 Price:

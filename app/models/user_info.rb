@@ -1,4 +1,4 @@
 class UserInfo < ApplicationRecord
   belongs_to :user
-  enum gender: { female:0, male:1 }
+  enum gender: { female:2, male:4 }
 end

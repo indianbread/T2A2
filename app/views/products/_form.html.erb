@@ -1,7 +1,7 @@
 <%= form_with(model: product, local:true) do |form|%>
  <% if product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(toy.errors.count, "error") %> prohibited this product listing from being saved:</h2>
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product listing from being saved:</h2>
 
       <ul>
       <% product.errors.full_messages.each do |message| %>
@@ -23,12 +23,19 @@
 
   <div>
       <%= form.label :category_id %>
-      <%= form.select :category_id, options_for_select( Category.all.collect { |u| [u.name, u.id] }, :selected => product.category_id ), {include_blank: 'Select Category'} %> 
+      <%= form.select :category_id, options_for_select( Category.all.collect { |u| [u.name, u.id] }.sort, :selected => product.category_id ), {include_blank: 'Select Category'} %> 
     </div>
 
     <div>
       <%= form.label :brand_id %>
-      <%= form.select :brand_id, options_for_select( Brand.all.collect { |u| [u.name, u.id] }, :selected => product.brand_id ), {include_blank: 'Select Brand'} %> 
+      <%= form.select :brand_id, options_for_select( Brand.all.collect { |u| [u.name, u.id] }.sort, :selected => product.brand_id ), {include_blank: 'Select Brand'} %> 
+    </div>
+
+    <div>
+    <%= form.label :ingredient_id %>
+    <%= form.select(:ingredient_id, Ingredient.all.collect {|p| [ p.name, p.id ] }.sort, 
+    { :prompt => "Please select"}, 
+    { :multiple => true, :size => 5 }) %>
     </div>
 
     Used:<br>
@@ -63,7 +70,6 @@
     <%= form.file_field :receipt, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>
     </div>
     <br>
-''
    <div class="actions">
     <%= form.submit %>
   </div>

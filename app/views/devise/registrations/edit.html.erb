@@ -12,6 +12,29 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+  <%= f.fields_for :user_info do |u| %>
+    <div class="field">
+    <%= u.label :first_name %><br>
+    <%= u.text_field :first_name %>
+  </div>
+    <div class="field">
+    <%= u.label :surname %><br>
+    <%= u.text_field :surname %>
+  </div>
+
+    <div class="field">
+    <%= u.label :gender %><br>
+    <% UserInfo.genders.keys.each do |g|%>
+    <%= u.label g %>
+    <%= u.radio_button :gender, g %>
+    <% if g == resource.user_info.gender %>
+    <% u.radio_button :gender, :checked => true %>
+    <% end %>
+    <% end %>
+  </div>
+
+  <% end %>
+
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "new-password" %>

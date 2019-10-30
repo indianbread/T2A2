@@ -4,6 +4,9 @@ class PagesController < ApplicationController
 
   def not_found
   end
+
+  def not_authorised
+  end
   
   
 end

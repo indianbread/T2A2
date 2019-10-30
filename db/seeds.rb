@@ -9,6 +9,7 @@
 User.create(
   email: "test@test.com",
   password: "testtest"
+  admin: true
 )
 
 Category.create(name: "moisturiser")
@@ -34,7 +35,6 @@ UserInfo.create(
   user_id: 1,
   first_name: "admin",
   surname: "admin",
-  gender: 0,
-  admin: true
+  gender: 0
 )
 

@@ -37,18 +37,21 @@ Rails.application.routes.draw do
   delete '/users/:id/user_infos', to:"user_infos#destroy"
   get '/users/:id/user_infos/edit', to:"user_infos#edit", as: "edit_user_user_info"
   get '/users/:id/user_infos/new', to:"user_infos#new", as: "new_user_user_info"
-  post '/users/:id/user_infos', to:"user_infos#index", as: "user_user_info"
+  post '/users/:id/user_infos', to:"user_infos#create"
 
  
 
 
   get '/', to: "pages#index", as: "root"
 
+  # devise_for :users
 
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: "users/registrations"
+  }
 
-
-
-  devise_for :users
+  
   get "*path", to: "pages#not_found", constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'
   }

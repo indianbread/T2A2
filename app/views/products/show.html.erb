@@ -53,6 +53,9 @@ Description:
     });
 </script>
 <% end %>
+<br>
+
+<%= link_to 'Add to cart', path %>
 
 <% if can? :edit, :delete, @product %>
 <%= link_to 'Edit Product Listing', edit_product_path(@product) %><br>

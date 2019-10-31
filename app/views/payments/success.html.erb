@@ -1,7 +1,11 @@
 You've made a successful payment!
 <h2>Purchase summary</h2>
 <strong>Item:</strong>
-<%= @product.title %>
+<% @order.order_lines.each do |order| %>
+<%= order.product.name %><br>
+Price:
+<%= order.product.price %>
+<% end %>
 <br>
 
 <%= link_to 'Back to Product Listings', products_path %>

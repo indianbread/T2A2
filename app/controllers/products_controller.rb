@@ -6,8 +6,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.where(sold: false)
-    filtering_params(params).each do |key,value|
-      @products = @products.public_send(key, value) if value.present?
     end
     
   end
@@ -105,8 +103,5 @@ end
     @product = current_user.products.find_by_id(params[:id])
   end
 
-  def filtering_params(params)
-    params.slice(:category_id, :starts_with, :brand_id)
-  end
 
 end

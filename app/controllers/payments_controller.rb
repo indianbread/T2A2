@@ -2,8 +2,10 @@ class PaymentsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [ :webhook ]
   before_action :set_order, only: [:success]
   def success
-    order_lines = OrderLine.where("order_id = ?", order_id)
-
+    order_lines = OrderLine.where("order_id = ?", @order.id)
+    order_lines.each do |order|
+      order.product.update("sold":true)
+    end
   end
 
   def webhook

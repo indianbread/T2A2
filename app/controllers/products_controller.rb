@@ -5,15 +5,42 @@ class ProductsController < ApplicationController
   
 
   def index
-    @products = Product.where(nil)
+    @products = Product.where(sold: false)
     filtering_params(params).each do |key,value|
       @products = @products.public_send(key, value) if value.present?
     end
     
   end
 
-  def show
+  # def show
 
+  # end
+
+  def show
+    @order = Order.create(user_id: current_user.id, total_amount: @product.price)
+    @order_line = OrderLine.create(order_id: @order.id, product_id: @product.id)
+    session = Stripe::Checkout::Session.create(
+    payment_method_types: [ 'card' ],
+    customer_email: current_user.email,
+    line_items: [{
+    name: @product.name,
+    description: @product.description,
+    amount: @product.price.to_i * 100,
+    #stripe money is in cents, therefore need to multiple by 100
+    currency: 'aud',
+    quantity: 1
+    }],
+    payment_intent_data: {
+    metadata: {
+    user_id: current_user.id,
+    order_id: @order.id
+    }
+    },
+    success_url: "#{root_url}payments/success?userId=#{current_user.id}&orderId=#{@order.id}",
+    cancel_url: "#{root_url}listings"
+    )
+
+    @session_id = session.id
 
   end
 
@@ -61,7 +88,7 @@ end
   private
 
   def product_params
-    params.require(:product).permit( :user_id, :category_id, :brand_id, :name, :expiry_date, :used, :price, :description, :sold, :picture, :receipt, {:ingredient_ids => []}, ingredients_attributes: [:name], category_attributes: [:name], brand_attributes: [:name])
+    params.require(:product).permit( :user_id, :category_id, :brand_id, :name, :expiry_date, :used, :price, :description, :sold, :picture, :receipt, {:ingredient_ids => []}, ingredients_attributes: [:name], category_attributes: [:name], brand_attributes: [:name], orders_attributes: [:order_id, :total_amount], order_line_attributes: [:product_id, :order_id])
   end
 
 

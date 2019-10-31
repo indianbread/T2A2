@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'order_lines/index'
+  get 'order_lines/new'
+  get 'order_lines/show'
+  get 'order_lines/edit'
+  get 'order_lines/destroy'
+  get 'orders/index'
+  get 'orders/show'
+  get 'orders/edit'
+  get 'orders/new'
+  get 'orders/destroy'
   get 'ingredients/index'
   get 'ingredients/show'
   get 'ingredients/new'
@@ -44,10 +54,15 @@ Rails.application.routes.draw do
   get '/users/:id/user_infos/new', to:"user_infos#new", as: "new_user_user_info"
   post '/users/:id/user_infos', to:"user_infos#create"
 
- 
+
+
+  get '/payments/success', to: 'payments#success'
+  post 'payments/webhook', to: 'payments#webhook'
 
 
   get '/', to: "pages#index", as: "root"
+
+  
 
   # devise_for :users
 

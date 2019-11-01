@@ -1,0 +1,34 @@
+<h1>Addresses#indexnew</h1>
+<p>Find me in app/views/addresses/indexnew.html.erb</p>
+
+<% counter = 0 %>
+<table>
+<thead>
+<th>Address</th>
+<th>House/unit number & street</th>
+<th>Suburb</th>
+<th>Postcode</th>
+<th>State</th>
+<th>Country</th>
+<th>Delete</th>
+<th colspan="9"></th>
+</tr>
+</thead>
+<tbody>
+<% @addresses.each do |address|%>
+<tr>
+<td>Address <%= counter += 1 %> </td>
+<td><%= address.street_number %></td>
+<td><%= address.suburb %></td>
+<td><%= address.postcode %></td>
+<td><%= address.state%></td>
+<td><%= address.country%></td>
+<td><%= link_to 'Edit', edit_address_path(address) %></td>
+<td><%= link_to 'Delete', address_path(address), method: :delete, data: {confirm: 'Address will be removed. Proceed?'} %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<br>
+<%= link_to 'Add New Address', new_address_path %>
+

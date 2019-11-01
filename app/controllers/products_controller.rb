@@ -1,22 +1,22 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, only:[ :edit, :new, :update, :delete]
+  before_action :authenticate_user!, only:[:show, :edit, :new, :update, :delete]
   before_action :set_product, only:[ :show, :edit, :update, :destroy]
   # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
 
   def index
     @products = Product.where(sold: false)
+
     end
-    
-  end
+  
 
   # def show
 
   # end
 
   def show
-    @order = Order.create(user_id: current_user.id, total_amount: @product.price)
-    @order_line = OrderLine.create(order_id: @order.id, product_id: @product.id)
+    @order_line = current_order.order_lines.new
+    current_user_name = "#{current_user.user_info.first_name} #{current_user.user_info.surname}"
     session = Stripe::Checkout::Session.create(
     payment_method_types: [ 'card' ],
     customer_email: current_user.email,
@@ -24,17 +24,25 @@ class ProductsController < ApplicationController
     name: @product.name,
     description: @product.description,
     amount: @product.price.to_i * 100,
-    #stripe money is in cents, therefore need to multiple by 100
     currency: 'aud',
     quantity: 1
     }],
     payment_intent_data: {
     metadata: {
     user_id: current_user.id,
-    order_id: @order.id
+    product_id: @product.id
     }
+    # ,shipping: {
+    #   name: current_user_name
+    #   address: {
+    #     line1: current_user.addresses.last.street_number,
+    #     city: current_user.addresses.last.suburb,
+    #     country: current_user.addresses.last.country
+      # }
+    # }
     },
-    success_url: "#{root_url}payments/success?userId=#{current_user.id}&orderId=#{@order.id}",
+    
+    success_url: "#{root_url}payments/success?userId=#{current_user.id}&productId=#{@product.id}",
     cancel_url: "#{root_url}listings"
     )
 
@@ -99,9 +107,9 @@ end
   end
 
 
-  def set_user_products
-    @product = current_user.products.find_by_id(params[:id])
-  end
+  # def set_user_products
+  #   @product = current_user.products.find_by_id(params[:id])
+  # end
 
 
 end

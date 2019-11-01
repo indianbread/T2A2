@@ -2,7 +2,7 @@
 <p>Find me in app/views/products/show.html.erb</p>
 
 <h1>Viewing information for <%= @brand.name %> <%= @product.name %></h1>
-
+Product Image: 
 <p> <%= image_tag @product.picture if @product.picture.attached? %> </p>
 Listed by:
 <%= @product.user.email %><br>
@@ -24,6 +24,8 @@ Notable Ingredients:
 <%= ingredient.name%><%= separator %>
 <% end %>
 <br>
+Used: 
+<%= @product.used %><br>
 Product Expiry:
 <%= @product.expiry_date %><br>
 Purchase receipt:
@@ -32,7 +34,7 @@ Price:
 <%= number_to_currency(@product.price) %><br>
 Description:
 <%= @product.description %><br>
-<% if @product.user != current_user %>
+
 <button data-stripe="payment">
   Buy Now <%= number_to_currency(@product.price) %>
 </button>
@@ -52,10 +54,18 @@ Description:
       });
     });
 </script>
+
+
+<br>
+<%= form_with model: @order_line, url: order_lines_path, method: "post" do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.submit "Add to cart" %>
+  <% end %>
 <% end %>
+
 <br>
 
-<%= link_to 'Add to cart', path %>
+
 
 <% if can? :edit, :delete, @product %>
 <%= link_to 'Edit Product Listing', edit_product_path(@product) %><br>

@@ -26,7 +26,13 @@ class PaymentsController < ApplicationController
 private
 
   def set_order
+    if @order == nil
+      @product = Product.find(params[:productId])
+      @order = Order.create(user_id: current_user.id, total_amount: @product.price)
+      @order_line = OrderLine.create(order_id: @order.id, product_id: @product.id)
+    else
     order_id = params[:orderId]
     @order = Order.find(order_id)
+    end
   end
 end

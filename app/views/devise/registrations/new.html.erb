@@ -27,9 +27,28 @@
     <% u.radio_button :gender, :checked => true %>
     <% end %>
     <% end %>
-  </div>
+    </div>
+    <%end%>
+    <br>
 
-  <% end %>
+    <%= f.fields_for :addresses do |a| %>
+    <%= a.label :street_number %><br>
+    <%= a.text_field :street_number %>
+    <br>
+    <%= a.label :suburb %><br>
+    <%= a.text_field :suburb %>
+    <br>
+    <%= a.label :postcode %><br>
+    <%= a.number_field :suburb, step: 1, min: 0  %>
+    <br>
+    <%= a.label :state %><br>
+    <%= a.text_field :state %>
+    <br>
+    <%= a.label :country %><br>
+    <%= a.text_field :country %>
+    <br>
+
+    <% end %>
 
 <div class="field">
     <%= f.label :password %>

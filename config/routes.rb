@@ -1,36 +1,8 @@
 Rails.application.routes.draw do
-  # get 'order_lines/index'
-  # get 'order_lines/new'
-  # get 'order_lines/show'
-  # get 'order_lines/edit'
-  # get 'order_lines/destroy'
-  # get 'orders/index'
-  # get 'orders/show'
-  # get 'orders/edit'
-  # get 'orders/new'
-  # get 'orders/destroy'
-  # get 'ingredients/index'
-  # get 'ingredients/show'
-  # get 'ingredients/new'
-  # get 'ingredients/edit'
-  # get 'ingredients/destroy'
-  # get 'brands/index'
-  # get 'brands/edit'
-  # get 'brands/new'
-  # get 'brands/destroy'
-  # get 'user_infos/index'
-  # get 'user_infos/show'
-  # get 'user_infos/edit'
-  # get 'user_infos/destroy'
-  # get 'user_info/index'
-  # get 'user_info/show'
-  # get 'user_info/edit'
-  # get 'user_info/new'
-  # get 'user_info/destroy'
-  # get 'categories/index'
-  # get 'categories/show'
-  # get 'categories/edit'
-  # get 'categories/delete'
+
+  get '/admindashboard', to: "pages#admin_dashboard", as: "admin_dashboard"
+  get '/userdashboard', to: 'pages#user_dashboard', as: 'user_dashboard'
+
   get 'products/', to: "products#index", as: "products"
   get 'products/new', to:'products#new', as:'new_product'
   post '/products', to:'products#create'
@@ -53,24 +25,32 @@ Rails.application.routes.draw do
   get '/users/:id/user_infos/edit', to:"user_infos#edit", as: "edit_user_user_info"
   get '/users/:id/user_infos/new', to:"user_infos#new", as: "new_user_user_info"
   post '/users/:id/user_infos', to:"user_infos#create"
-
-  get '/users/:id/cart', to:'order_lines#index', as:'order_lines'
+  get '/users/:id/order_lines', to:'order_lines#index', as: 'order_lines'
+  # get '/users/:id/cart', to:'carts#show', as:'show_cart'
+  post '/users/:id/order_lines', to:'order_lines#create'
+  delete '/users/:id/order_lines', to: 'order_lines#destroy'
+  get '/users/:id/cart', to:'carts#show', as: 'cart'
 
   get '/payments/success', to: 'payments#success'
   post 'payments/webhook', to: 'payments#webhook'
 
   get '/', to: "pages#index", as: "root"
 
-  
+  get '/addresses', to: 'addresses#index', as: 'addresses'
+  post '/addresses', to: 'addresses#create'
+  get '/addresses/new', to: 'addresses#new', as: 'new_address'
+  get '/addresses/:id', to: 'addresses#show', as: 'address'
+  delete '/addresses/:id', to: 'addresses#destroy'
+  get '/addresses/:id/edit', to: 'addresses#edit', as: 'edit_address'
+  patch '/addresses/:id', to: 'addresses#update'
 
-  # devise_for :users
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: "users/registrations"
-  }
+  } 
 
-  
+  get '/not_authorised', to: 'pages#not_authorised', as: 'not_authorised'
   get "*path", to: "pages#not_found", constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'
   }

@@ -11,14 +11,22 @@ Rails.application.routes.draw do
   patch 'products/:id', to: 'products#update'
   delete '/products/:id', to: 'products#destroy'
 
-  get 'categories/:id', to: "categories#show", as:"category"
+  get '/categories', to: "categories#index", as:"categories"
+  get 'categories/new', to:'categories#new', as:'new_category'
+  post '/categories', to:'categories#create'
+  get '/categories/:id', to: 'categories#show', as:'category'
   patch 'categories/:id', to: 'categories#update'
   delete '/categories/:id', to: 'categories#destroy'
   get 'categories/:id/edit', to:"categories#edit", as: "edit_category"
-  get 'categories/new', to:'categories#new', as:'new_category'
-  get 'categories/', to: "categories#index", as: "categories"
-  post '/categories', to:'categories#create'
-  
+
+  get '/brands', to: "brands#index", as:"brands"
+  get 'brands/new', to:'brands#new', as:'new_brand'
+  post '/brands', to:'brands#create'
+  get '/brands/:id', to: 'brands#show', as:'brand'
+  patch 'brands/:id', to: 'brands#update'
+  delete '/brands/:id', to: 'brands#destroy'
+  get 'brands/:id/edit', to:"brands#edit", as: "edit_brand"
+ 
   get '/users/:id/user_infos', to:"user_infos#index", as: "user_user_info"
   patch '/users/:id/user_infos', to:"user_infos#update"
   delete '/users/:id/user_infos', to:"user_infos#destroy"
@@ -26,7 +34,6 @@ Rails.application.routes.draw do
   get '/users/:id/user_infos/new', to:"user_infos#new", as: "new_user_user_info"
   post '/users/:id/user_infos', to:"user_infos#create"
   get '/users/:id/order_lines', to:'order_lines#index', as: 'order_lines'
-  # get '/users/:id/cart', to:'carts#show', as:'show_cart'
   post '/users/:id/order_lines', to:'order_lines#create'
   delete '/users/:id/order_lines', to: 'order_lines#destroy'
   get '/users/:id/cart', to:'carts#show', as: 'cart'

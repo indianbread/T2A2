@@ -32,6 +32,14 @@
     </div>
 
     <div>
+    <% if product.ingredients.any?%>
+    Existing ingredients:
+    <% product.ingredients.each do |ingredient| %>
+    <%= ingredient.name %>
+    <br>
+    <% end %>
+    <% end %>
+    Select ingredients to override current ingredients:
     <%= form.label :ingredient_id %>
     <%= form.select(:ingredient_id, Ingredient.all.collect {|p| [ p.name, p.id ] }.sort, 
     { :prompt => "Please select"}, 

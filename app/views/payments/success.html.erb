@@ -4,7 +4,7 @@ You've made a successful payment!
 <% @order.order_lines.each do |order| %>
 <%= order.product.name %><br>
 Price:
-<%= order.product.price %>
+<%= number_to_currency(order.product.price) %>
 <% end %>
 <br>
 

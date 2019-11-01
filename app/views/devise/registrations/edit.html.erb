@@ -34,6 +34,19 @@
   </div>
   <% end %>
   <br>
+  <h2>Addresses</h2>
+  <%resource.addresses.each do |address| %>
+  <% counter = 1%>
+  Address <%=counter%>:<br>
+  <%= address.street_number%>
+  <br>
+  <%= address.suburb%>, 
+   <%= address.state%> <%= address.postcode%>
+  <br>
+  <%= address.country%>
+  <br>
+  <% counter += 1%>
+  <% end%>
       <%= link_to 'Manage Addresses', addresses_path(resource) %>
       <br>
   <div class="field">

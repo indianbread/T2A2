@@ -1,35 +1,53 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorise_user
-  before_action :set_cat, only: [:show, :edit, :update, :delete]
+  load_and_authorize_resource
+  skip_load_resource :only => [:new, :create]
+  skip_authorize_resource :only => [:index]
   def index
     @categories = Category.all
   end
 
-  def show
+  def cat_products
+    cat_id = params[:id]
+    @products = Product.where(category_id: cat_id, sold: false)
   end
-
+  
   def edit
+
   end
 
   def update
+    if @category.update(category_params)
+      redirect_to categories_path, notice: 'Category successfully updated'
+    else
+      render :edit
+    end
   end
+def show
+end
 
   def new
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.new(category_params)
+    if @category.save
+      redirect_to categories_path, notice: 'Category successfully added'
+    else
+      render :new
+    end
   end
 
   def destroy
+    @category.destroy
+    redirect_to categories_path, notice: 'Category was successfully deleted'
   end
 
   private
 
-  def set_cat
-    @category = Category.find(params[:id])
-  end
-
-  def authorise_user
-    if current_user.user_info.admin == false
-      redirect to root_path 
-
+def category_params
+  params.require(:category).permit(:name)
+end
 
 end

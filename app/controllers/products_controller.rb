@@ -3,47 +3,31 @@ class ProductsController < ApplicationController
   before_action :set_product, only:[ :show, :edit, :update, :destroy]
   # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
-
   def index
     @products = Product.where(sold: false)
 
     end
   
-
-  # def show
-
-  # end
-
   def show
-    @order_line = current_order.order_lines.new
-    current_user_name = "#{current_user.user_info.first_name} #{current_user.user_info.surname}"
+
     session = Stripe::Checkout::Session.create(
-    payment_method_types: [ 'card' ],
-    customer_email: current_user.email,
-    line_items: [{
-    name: @product.name,
-    description: @product.description,
-    amount: @product.price.to_i * 100,
-    currency: 'aud',
-    quantity: 1
-    }],
-    payment_intent_data: {
-    metadata: {
-    user_id: current_user.id,
-    product_id: @product.id
-    }
-    # ,shipping: {
-    #   name: current_user_name
-    #   address: {
-    #     line1: current_user.addresses.last.street_number,
-    #     city: current_user.addresses.last.suburb,
-    #     country: current_user.addresses.last.country
-      # }
-    # }
-    },
-    
-    success_url: "#{root_url}payments/success?userId=#{current_user.id}&productId=#{@product.id}",
-    cancel_url: "#{root_url}listings"
+      payment_method_types: [ 'card' ],
+      customer_email: current_user.email,
+      line_items: [{
+        name: @product.name,
+        description: @product.description,
+        amount: @product.price.to_i * 100,
+        currency: 'aud',
+        quantity: 1
+      }],
+      payment_intent_data: {
+        metadata: {
+          user_id: current_user.id,
+          product_id: @product.id
+        }
+      },
+      success_url: "#{root_url}payments/success?userId=#{current_user.id}&productId=#{@product.id}",
+      cancel_url: "#{root_url}products"
     )
 
     @session_id = session.id
@@ -56,6 +40,13 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      ingredient_ids = params[:product][:ingredient_id]
+      if ingredient_ids != nil
+        @product.ingredients.clear
+        ingredient_ids.each do |ingredient|
+        ProductIngredient.create(product_id:@product.id, ingredient_id: ingredient)
+      end
+    end
       redirect_to @product
     else
       render :edit
@@ -70,7 +61,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = current_user.products.new(product_params)
-
 
     if @product.save
       ingredient_ids = params[:product][:ingredient_id]

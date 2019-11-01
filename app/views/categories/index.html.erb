@@ -7,11 +7,21 @@
 <th>Category Name</th>
 </thead>
 <tbody>
-<% @categories.each do |cat| %>
+<% @categories.each do |category| %>
 <tr>
-<td><%= cat.name %></td>
-<td><%= link_to 'Edit', edit_category_path(cat) %></td>
-<td><%= link_to 'Delete', category_path(cat), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+<td><%= category.name %></td>
+<% if can? :edit, :delete, @category %>
+<td><%= link_to 'Edit', edit_category_path(category) %></td>
+<td><%= link_to 'Delete', category_path(category), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+<%else%>
+<td></td>
+<td></td>
 <% end %>
+</tr>
+<% end %>
+</tbody>
+</table>
+<br>
+<%= link_to 'Add new category', new_category_path %>
 
 

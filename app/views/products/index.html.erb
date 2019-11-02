@@ -13,11 +13,7 @@ Product Name:
 Date listed:
 <%= product.created_at.localtime.to_date%><br>
 Product Expiry:
-<% if product.expiry_date != nil %>
 <%= product.expiry_date%><br>
-<% else %>
-N/A<br>
-<% end %>
 Price:
 <%= number_to_currency(product.price) %><br>
 Description:

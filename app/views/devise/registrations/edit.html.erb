@@ -35,6 +35,10 @@
   <% end %>
   <br>
   <h2>Addresses</h2>
+  <% if resource.addresses.any? %>
+  There are no addresses recorded for this user yet
+  <br>
+  <% else %>
   <%resource.addresses.each do |address| %>
   <% counter = 1%>
   Address <%=counter%>:<br>
@@ -47,6 +51,7 @@
   <br>
   <% counter += 1%>
   <% end%>
+  <%end%>
       <%= link_to 'Manage Addresses', addresses_path(resource) %>
       <br>
   <div class="field">

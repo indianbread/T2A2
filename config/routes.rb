@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get '/admindashboard', to: "pages#admin_dashboard", as: "admin_dashboard"
   get '/userdashboard', to: 'pages#user_dashboard', as: 'user_dashboard'
 
@@ -27,16 +28,16 @@ Rails.application.routes.draw do
   delete '/brands/:id', to: 'brands#destroy'
   get 'brands/:id/edit', to:"brands#edit", as: "edit_brand"
  
-  get '/users/:id/user_infos', to:"user_infos#index", as: "user_user_info"
-  patch '/users/:id/user_infos', to:"user_infos#update"
-  delete '/users/:id/user_infos', to:"user_infos#destroy"
-  get '/users/:id/user_infos/edit', to:"user_infos#edit", as: "edit_user_user_info"
-  get '/users/:id/user_infos/new', to:"user_infos#new", as: "new_user_user_info"
-  post '/users/:id/user_infos', to:"user_infos#create"
-  get '/users/:id/order_lines', to:'order_lines#index', as: 'order_lines'
-  post '/users/:id/order_lines', to:'order_lines#create'
-  delete '/users/:id/order_lines', to: 'order_lines#destroy'
-  get '/users/:id/cart', to:'carts#show', as: 'cart'
+  # get '/users/:id/user_infos', to:"user_infos#index", as: "user_user_info"
+  # patch '/users/:id/user_infos', to:"user_infos#update"
+  # delete '/users/:id/user_infos', to:"user_infos#destroy"
+  # get '/users/:id/user_infos/edit', to:"user_infos#edit", as: "edit_user_user_info"
+  # get '/users/:id/user_infos/new', to:"user_infos#new", as: "new_user_user_info"
+  # post '/users/:id/user_infos', to:"user_infos#create"
+  # get '/users/:id/order_lines', to:'order_lines#index', as: 'order_lines'
+  # post '/users/:id/order_lines', to:'order_lines#create'
+  # delete '/users/:id/order_lines', to: 'order_lines#destroy'
+  # get '/users/:id/cart', to:'carts#show', as: 'cart'
 
   get '/payments/success', to: 'payments#success'
   post 'payments/webhook', to: 'payments#webhook'
@@ -52,10 +53,23 @@ Rails.application.routes.draw do
   patch '/addresses/:id', to: 'addresses#update'
 
 
-  devise_for :users, controllers: {
+  devise_for :users, :path_prefix => 'my', controllers: {
     sessions: 'users/sessions',
     registrations: "users/registrations"
   } 
+
+  get '/users', to: 'users#index', as: 'users'
+  post '/users', to: 'users#create'
+  get '/users/new', to: 'users#new', as: 'new_user'
+  get '/users/:id', to: 'users#show', as: 'user'
+  delete '/users/:id', to: 'users#destroy'
+  get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
+  patch '/users/:id', to: 'user#update'
+
+  
+  # scope "/admin" do
+  #   resources :users, :controller => "users"
+  # end
 
   get '/not_authorised', to: 'pages#not_authorised', as: 'not_authorised'
   get "*path", to: "pages#not_found", constraints: lambda { |req|

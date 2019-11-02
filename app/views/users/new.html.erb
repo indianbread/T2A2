@@ -1,0 +1,91 @@
+<h1>Users#new</h1>
+<p>Find me in app/views/users/new.html.erb</p>
+
+<%= form_with(model: user, local:true, url: registration_path(@user)do |f| %>
+ <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user listing from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+<br>
+  Admin User&#63; <%= f.check_box :admin %>
+  <br>
+
+  <%= f.fields_for :user_info do |u| %>
+    <div class="field">
+    <%= u.label :first_name %><br>
+    <%= u.text_field :first_name %>
+  </div>
+
+    <div class="field">
+    <%= u.label :surname %><br>
+    <%= u.text_field :surname %>
+  </div>
+
+    <div class="field">
+    <%= u.label :gender %><br>
+    <% UserInfo.genders.keys.each do |g|%>
+    <%= u.label g %>
+    <%= u.radio_button :gender, g %>
+    <% if g == user.user_info.gender %>
+    <% u.radio_button :gender, :checked => true %>
+    <% end %>
+    <% end %>
+  </div>
+  <% end %>
+  <br>
+  <div class="field">
+    <%= f.label :password %> <br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+
+
+<h2>Addresses</h2>
+  <% if @user.addresses.first.id == nil %>
+ An address is required for purchases
+  <br>
+  <% else %>
+    <%@user.addresses.each do |address| %>
+      <% counter = 1%>
+      <%= "Address #{counter}: " %><br>
+      <%= address.street_number%>
+      <br>
+      <%= address.suburb%>, 
+      <%= address.state%> <%= address.postcode%>
+      <br>
+      <%= address.country%>
+      <br>
+      <% counter += 1%>
+    <% end%>
+  <% end%>
+      <%= link_to 'Manage Addresses', addresses_path(@user) %>
+      <br>
+
+<%= link_to 'Back', :back %>
+<br>
+<%= link_to 'Admin Dashboard', admin_dashboard_path %>

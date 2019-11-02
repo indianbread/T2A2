@@ -1,7 +1,7 @@
 <h1>Products#show</h1>
 <p>Find me in app/views/products/show.html.erb</p>
 
-<h1>Viewing information for <%= @brand.name %> <%= @product.name %></h1>
+<h1>Viewing information for <%= @product.brand.name %> <%= @product.name %></h1>
 Product Image: 
 <p> <%= image_tag @product.picture if @product.picture.attached? %> </p>
 Listed by:
@@ -9,14 +9,14 @@ Listed by:
 Date listed:
 <%= @product.created_at.localtime.to_date%><br>
 Category:
-<%= @category.name %><br>
+<%= @product.category.name %><br>
 Brand:
-<%= @brand.name %><br>
+<%= @product.brand.name %><br>
 Product Name:
 <%= @product.name %><br>
 Notable Ingredients:
-<% @ingredients.each_with_index do |ingredient, index| %>
-<% if @ingredients.length > 1 && ((index + 1) < @ingredients.length)%>
+<% @product.ingredients.each_with_index do |ingredient, index| %>
+<% if @product.ingredients.length > 1 && ((index + 1) < @product.ingredients.length)%>
 <% separator = ", "%>
 <% else %>
 <% separator = "" %>

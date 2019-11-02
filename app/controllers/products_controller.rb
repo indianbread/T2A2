@@ -1,12 +1,21 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only:[:show, :edit, :new, :update, :delete]
-  before_action :set_product, only:[ :show, :edit, :update, :destroy]
+  # before_action :set_product, only:[ :show, :edit, :update, :destroy]
+  load_and_authorize_resource
+  skip_load_resource :only => [:new, :create, :index, :admin_products]
   # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
   def index
     @products = Product.where(sold: false)
+  end
 
+  def admin_products
+    @products = Product.all.sort_by { |k,v| k["created_at"]}.reverse
+    if current_user.admin? == false
+      redirect_to not_authorised_path
     end
+  end
+
   
   def show
 
@@ -35,7 +44,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    authorize! :update, @product
+    # authorize! :update, @product
   end
 
   def update

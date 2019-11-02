@@ -61,7 +61,7 @@
     </div>   
    <div>
         <%= form.label :price %> $
-        <%= form.number_field :price, step: :any, min: 0 %>
+        <%= form.number_field :price, step:0.5, min: 0 %>
     </div>   
 
 <%= image_tag product.picture if product.picture.attached? %>

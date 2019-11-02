@@ -1,21 +1,24 @@
 class OrderLinesController < ApplicationController
+  #delete this if not required
+  load_and_authorize_resource
+  skip_load_resource :only => [:new, :create]
+
   def index
-    @order_lines = current_order.order_lines
+    @order_lines = OrderLine.where(:order_id: order_id)
   end
 
   def new
   end
 
   def create
-    id = params[:id]
-    @product = Product.find(id)
-    @order = current_order
-    order_id = @order.id
-    product_id = params[:id]
-    @product = OrderLine.new(line_params)
-    @order.save
-    session[:order_id] = @order.id
-    redirect_to order_lines_path
+    @order_line = current_user.order_lines.new(order_line_params)
+    # @user_detail.user_id = current_user.id
+
+    if @order_line.save
+      redirect_to @order_line
+    else
+      render :new
+    end
   end
 
   def show
@@ -26,18 +29,20 @@ class OrderLinesController < ApplicationController
   end
 
   def destroy
-    @order = current_order
-    @item = @order.order_lines.find(params[:id])
-    @item.destroy
-    @order.save
-    redirect_to order_lines_path
+    if @order_line.destroy
+      redirect_to orders_path
+    else
+      render notice: 'item could not be removed from order'
+    end
   end
 
   private
 
-  def line_params
+  def order_line_params
     params.require(:order_line).permit(:product_id, :order_id)
   end
 
-  
+  def set_order
+    order_id = params[:id]
+  end
 end

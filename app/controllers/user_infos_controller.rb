@@ -1,6 +1,6 @@
 class UserInfosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user_info, only: [:index, :edit, :update, :destroy]
+  # before_action :set_user_info, only: [:index, :edit, :update, :destroy]
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
   def index
@@ -25,11 +25,11 @@ class UserInfosController < ApplicationController
   end
 
   def create
-    @user_detail = current_user.user_details.new(user_info_params)
+    @user_info = current_user.user_infos.new(user_info_params)
     # @user_detail.user_id = current_user.id
 
-    if @user_detail.save
-      redirect_to @user_detail
+    if @user_info.save
+      redirect_to @user_info
     else
       render :new
     end
@@ -43,9 +43,9 @@ class UserInfosController < ApplicationController
   
   private
 
-  def set_user_info
-    @user_info = current_user.user_info
-  end
+  # def set_user_info
+  #   @user_info = current_user.user_info
+  # end
   def user_info_params
     params.require(:user_info).permit(:user_id, :first_name, :surname, :gender )
   end

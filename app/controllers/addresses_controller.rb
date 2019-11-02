@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_address, only: [:edit, :update, :destroy]
+  # before_action :set_address, only: [:edit, :update, :destroy]
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
   def index
@@ -45,10 +45,10 @@ class AddressesController < ApplicationController
 
   private
 
-  def set_address
-    id = params[:id]
-    @address = Address.find(id)
-  end
+  # def set_address
+  #   id = params[:id]
+  #   @address = Address.find(id)
+  # end
 
   def address_params
     params.require(:address).permit(:user_id, :street_number, :suburb, :postcode, :state, :country)

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/admindashboard', to: "pages#admin_dashboard", as: "admin_dashboard"
   get '/userdashboard', to: 'pages#user_dashboard', as: 'user_dashboard'
+  get '/admin_products', to: 'products#admin_products', as: 'admin_products'
 
   get 'products/', to: "products#index", as: "products"
   get 'products/new', to:'products#new', as:'new_product'
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   get 'products/:id/edit', to:"products#edit", as: "edit_product"
   patch 'products/:id', to: 'products#update'
   delete '/products/:id', to: 'products#destroy'
+  
 
   get '/categories', to: "categories#index", as:"categories"
   get 'categories/new', to:'categories#new', as:'new_category'
@@ -64,7 +66,16 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
   delete '/users/:id', to: 'users#destroy'
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
-  patch '/users/:id', to: 'user#update'
+  patch '/users/:id', to: 'users#update'
+
+  get '/orders', to: 'orders#index', as: 'orders'
+  post '/orders', to: 'orders#create'
+  get '/orders/new', to: 'orders#new', as: 'new_order'
+  get '/orders/:id', to: 'orders#show', as: 'order'
+  delete '/orders/:id', to: 'orders#destroy'
+  get '/orders/:id/edit', to: 'orders#edit', as: 'edit_order'
+  patch '/orders/:id', to: 'orders#update'
+  
 
   
   # scope "/admin" do

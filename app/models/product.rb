@@ -5,7 +5,7 @@ class Product < ApplicationRecord
   has_one :order_line
   has_one_attached :picture
   has_one_attached :receipt
-  has_many :product_ingredients
+  has_many :product_ingredients, :dependent => :destroy
   has_many :ingredients, through: :product_ingredients
   serialize :ingredients
   enum used: { no:0, yes:1 }

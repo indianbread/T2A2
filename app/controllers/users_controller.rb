@@ -13,6 +13,10 @@ class UsersController < ApplicationController
     @address = @user.addresses.new
   end
 
+  def show
+
+  end
+
   def create
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
@@ -20,24 +24,23 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "Successfully created User." 
-      redirect_to users_path
+      redirect_to @user
     else
       render :new
     end
   end
 
   def edit
-    @user = User.find(params[:id])
-    
+
   end
 
   def update
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
-    params[:user].delete(:current_password) if params[:user][:password].blank? and params[:user][:password_confirmation].blank? and params[:user][:password_confirmation].blank?
+    params[:user].delete(:current_password) if params[:user][:password].blank? and params[:user][:password_confirmation].blank? and params[:user][:current_password].blank?
     if @user.update(user_params)
       flash[:notice] = "Successfully updated User."
-      redirect_to users_path
+      redirect_to @user
     else
       render :edit
     end

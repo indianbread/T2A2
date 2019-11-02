@@ -1,3 +1,40 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
 
+<h2> Viewing information for <%= @user.email%> </h2>
+
+Date registered: <%= @user.created_at.localtime.to_date%><br>
+Email: <%=@user.email%><br>
+<h3> User Information </h3>
+<% if @user.user_info == nil%>
+User information not recorded
+<% else %>
+First Name: <%= @user.user_info.first_name %>
+Last Name: <%= @user.user_info.surname %>
+Gender: <%= @user.user_info.gender %><br>
+
+<% end %>
+ 
+  <br>
+  <h2>Addresses</h2>
+  <% if @user.addresses.any? %>
+  There are no addresses recorded for this user yet
+  <br>
+  <% else %>
+  <%@user.addresses.each do |address| %>
+  <% counter = 1%>
+  Address <%=counter%>:<br>
+  <%= address.street_number%>
+  <br>
+  <%= address.suburb%>, 
+   <%= address.state%> <%= address.postcode%>
+  <br>
+  <%= address.country%>
+  <br>
+  <% counter += 1%>
+  <% end%>
+  <%end%>
+   
+<%= link_to "Back", :back %>
+<br>
+<%= link_to 'Admin Dashboard', admin_dashboard_path %>

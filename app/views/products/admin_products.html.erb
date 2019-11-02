@@ -1,0 +1,37 @@
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Brand</th>
+<th>Product ID</th>
+<th>Product Name</th>
+<th>Description</th>
+<th>Listed By</th>
+<th>Date Listed </th>
+<th>Price </th>
+<th>Sold></th>
+</thead>
+<tbody>
+<% @products.each do |product| %>
+<tr>
+<td><%= product.category.name %></td>
+<td><%= product.brand.name %></td>
+<td><%= product.id %></td>
+<td><%= product.name %></td>
+<td><%= product.description %></td>
+<td><%= product.user.email %></td>
+<td><%= product.created_at.localtime.to_date%></td>
+<td><%= number_to_currency(product.price) %></td>
+<td><%= product.sold %></td>
+
+<td><%= link_to 'View Details', product_path(product) %></td>
+<td><%= link_to 'Edit', edit_product_path(product) %></td>
+<td><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<br>
+<%= link_to 'Back', :back %>
+<br>
+<%= link_to 'Admin Dashboard', admin_dashboard_path %>

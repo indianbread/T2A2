@@ -1,22 +1,28 @@
 <!DOCTYPE html>
+<html lang="en">
 <html>
-  <head>
-    <title>KSCMarketplace</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>KSC Marketplace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-     
-    <ul class="hmenu">
-  <%= render 'devise/menu/registration_items' %>
-  <%= render 'devise/menu/login_items' %>
-</ul>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<div class = "container-fluid">
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+
+  <ul class="hmenu">
+    <%= render 'devise/menu/registration_items' %>
+    <%= render 'devise/menu/login_items' %>
+  </ul>
+  <%= yield %>
+</body>
+
 </html>

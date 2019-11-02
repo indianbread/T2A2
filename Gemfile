@@ -62,3 +62,7 @@ gem "cancancan", "~> 3.0"
 gem "stripe", "~> 5.7"
 
 gem "faker", "~> 2.6"
+
+gem 'bootstrap', '~> 4.3.1'
+
+gem 'jquery-rails'

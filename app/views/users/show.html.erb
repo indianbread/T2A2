@@ -9,21 +9,18 @@ Email: <%=@user.email%><br>
 <% if @user.user_info == nil%>
 User information not recorded
 <% else %>
-First Name: <%= @user.user_info.first_name %>
-Last Name: <%= @user.user_info.surname %>
-Gender: <%= @user.user_info.gender %><br>
+<b>First Name:</b> <%= @user.user_info.first_name %><br>
+<b>Last Name:</b> <%= @user.user_info.surname %><br>
+<b>Gender:</b> <%= @user.user_info.gender %><br>
 
 <% end %>
  
   <br>
   <h2>Addresses</h2>
   <% if @user.addresses.any? %>
-  There are no addresses recorded for this user yet
-  <br>
-  <% else %>
-  <%@user.addresses.each do |address| %>
+   <%@user.addresses.each do |address| %>
   <% counter = 1%>
-  Address <%=counter%>:<br>
+  <b>Address <%=counter%>:</b><br>
   <%= address.street_number%>
   <br>
   <%= address.suburb%>, 
@@ -32,7 +29,11 @@ Gender: <%= @user.user_info.gender %><br>
   <%= address.country%>
   <br>
   <% counter += 1%>
+  <br>
   <% end%>
+   <% else %>
+  There are no addresses recorded for this user yet
+  <br>
   <%end%>
    
 <%= link_to "Back", :back %>

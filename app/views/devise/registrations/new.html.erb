@@ -1,28 +1,35 @@
+<div class = "row one">
 <h2>Sign up</h2>
-
+</div>
+<div class = "row form">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="form-group">
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+</div>
+  <div class="form-group">
+    <%= f.label :email %> 
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"exampleInputEmail1" %>
   </div>
 
  <%= f.fields_for :user_info do |u| %>
-    <div class="field">
+    <div class="form-group">
     <%= u.label :first_name %><br>
     <%= u.text_field :first_name %>
   </div>
-    <div class="field">
+    <div class="form-group">
     <%= u.label :surname %><br>
     <%= u.text_field :surname %>
   </div>
 
-    <div class="field">
+   <div class="form-group">
     <%= u.label :gender %><br>
     <% UserInfo.genders.keys.each do |g|%>
+     <div class="form-check-label">
     <%= u.label g %>
+    </div>
+    <div class = "form-check-input">
     <%= u.radio_button :gender, g %>
+    </div>
     <% if g == resource.user_info.gender %>
     <% u.radio_button :gender, :checked => true %>
     <% end %>
@@ -65,6 +72,8 @@
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
+  </div>
 <% end %>
-
+</div>
 <%= render "devise/shared/links" %>
+

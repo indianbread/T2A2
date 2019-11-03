@@ -60,7 +60,7 @@ end
   states = ["VIC", "ACT", "NSW", "QLD", "TAS", "NT", "WA"]
   user_ids_2.each do |id|
     Address.create(
-      user_id: id
+      user_id: id,
       street_number: Faker::Address.street_address,
       suburb: Faker::Address.community,
       postcode: Faker::Number.within(range:3000..3200),

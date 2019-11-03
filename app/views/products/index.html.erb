@@ -1,30 +1,20 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
-
-<% @products.each do |product| %>
-Listed by:
-<%= product.user.email %><br>
-Category:
-<%= product.category.name %><br>
-Brand:
-<%= product.brand.name %><br>
-Product Name:
-<%= product.name%><br>
-Date listed:
-<%= product.created_at.localtime.to_date%><br>
-Product Expiry:
-<%= product.expiry_date%><br>
-Price:
-<%= number_to_currency(product.price) %><br>
-Description:
-<%= product.description%><br>
-<%= link_to 'View Details', product_path(product) %>
-<br>
-<br>
+<div class = "row one">
+<h2>All Products</h2>
+</div>
+<div class="row">
+<% @products.each do |product|%>
+<div class="card" style="width: 18rem;">
+  <%= image_tag product.picture, class:"card-img-top", alt:"Card image cap" %>
+  <div class="card-body diffbg">
+    <h5 class="card-title"><%= product.name %> <%= number_to_currency(product.price) %></h5>
+    <p class="card-text"><%= product.description%></p>
+  </div>
+  <div class="card-footer">
+   <%= link_to 'View Details', product_path(product), class:"btn btn-outline-dark" %>
+   </div>
+</div>
 <% end %>
-<br>
-<%= link_to 'Home', root_path %>
-<br>
-<%= link_to 'Add New Product Listing', new_product_path %>
+</div>
+</div>
 
 

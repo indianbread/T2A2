@@ -1,20 +1,36 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
 
-<h1>Viewing information for <%= @product.brand.name %> <%= @product.name %></h1>
-Product Image: 
-<p> <%= image_tag @product.picture if @product.picture.attached? %> </p>
-Listed by:
-<%= @product.user.email %><br>
-Date listed:
+
+<div class="container-fluid">
+<div class="row no-gutter">
+<!-- The image half -->
+ <div class="col-md-6 d-none d-md-flex bg-image">
+<%= image_tag @product.picture, size: '400', align: 'center'%>
+</div>
+
+<!-- The content half -->
+<div class="col-md-6 bg-light prodinfo">
+<div class="login d-flex align-items-center py-5">
+<div class="container">
+<div class="row">
+<div class="col-lg-10 col-xl-7 mx-auto">
+<h3 class="display-4"><%= @product.brand.name %> <%= @product.name %></h3>
+<p class="text-muted mb-4">Listed by:
+<%= @product.user.email %></p>
+<div class="text-left d-flex justify-content-between mt-4">
+<p>
+<b>Price:</b>
+<%= number_to_currency(@product.price) %><br>
+<b>Date listed:</b>
 <%= @product.created_at.localtime.to_date%><br>
-Category:
+<b>Category:</b>
 <%= @product.category.name %><br>
-Brand:
+<b>Brand:</b>
 <%= @product.brand.name %><br>
-Product Name:
+<b>Product Name:</b>
 <%= @product.name %><br>
-Notable Ingredients:
+<b>Description:</b>
+<%= @product.description %><br>
+<b>Notable Ingredients:</b>
 <% @product.ingredients.each_with_index do |ingredient, index| %>
 <% if @product.ingredients.length > 1 && ((index + 1) < @product.ingredients.length)%>
 <% separator = ", "%>
@@ -24,19 +40,18 @@ Notable Ingredients:
 <%= ingredient.name%><%= separator %>
 <% end %>
 <br>
-Used: 
+<b>Used: </b>
 <%= @product.used %><br>
-Product Expiry:
+<b>Product Expiry:</b>
 <%= @product.expiry_date %><br>
-Purchase receipt:
-<%= image_tag @product.receipt if @product.receipt.attached? %><br>
-Price:
-<%= number_to_currency(@product.price) %><br>
-Description:
-<%= @product.description %><br>
-
+<b>Purchase receipt:</b><br>
+<% if @product.receipt.attached? %>
+<%= image_tag @product.receipt, size: '500' %>
+<% end %>
+<br>
+<br>
 <% if @product.user != current_user %>
-<button data-stripe="payment">
+<button data-stripe="payment", class="btn btn-outline-dark">
   Buy Now <%= number_to_currency(@product.price) %>
 </button>
 
@@ -56,21 +71,21 @@ Description:
     });
 </script>
 <% end %>
-
-<br>
-<%#= form_with model: @order_line, url: order_lines_path, method: "post" do |f| %>
-  <%#= f.hidden_field :product_id, value: @product.id %>
-  <%#= f.submit "Add to cart" %>
-  <%# end %>
-<%# end %>
-
-<br>
-
-
-
-<% if can? :edit, :delete, @product %>
-<%= link_to 'Edit Product Listing', edit_product_path(@product) %><br>
-<%= link_to 'Delete Product Listing', product_path(@product), method: :delete, data: {confirm: 'Are you sure you want to delete this listing?'} %>
-<% end %>
-<br>
+<br><br>
 <%= link_to 'Back', :back %>
+<br><br>
+<% if can? :edit, :delete, @product %>
+<%= link_to 'Edit product', edit_product_path(@product) %><br>
+<%= link_to 'Delete product', product_path(@product), method: :delete, data: {confirm: 'Are you sure you want to delete this listing?'} %>
+<% end %>
+</p>
+</div>
+</div>
+</div>
+</div><!-- End -->
+
+</div>
+</div><!-- End -->
+
+</div>
+</div>

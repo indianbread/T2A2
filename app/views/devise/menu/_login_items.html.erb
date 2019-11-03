@@ -1,10 +1,6 @@
 <% if user_signed_in? %>
-<br> Logged in as <strong><%= current_user.email %></strong><br>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-  </li>
+<br> Logged in as <strong><%= current_user.email %></strong>&nbsp;&nbsp; 
+<%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
 <% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path) %>  
-  </li>
+<%= link_to('Login', new_user_session_path) %>
 <% end %>

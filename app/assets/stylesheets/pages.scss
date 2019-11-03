@@ -1,6 +1,41 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.bg-cover {
-  background-size: cover !important;
+
+
+.jumbotron-cover-image {
+  position: relative;
+  background-image: url("https://www.checkinjakarta.id/images/article/ARTICLE_2861_20190131100354.jpg"), linear-gradient(to right, rgba(204, 185, 177, 0.8), rgba(65, 70, 72, 0.8));
+  width: 100 vw;
+  height: 50 vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
 }
+.row.one {
+  justify-content: center;
+}
+.row {
+  align-items: top;
+  padding: 20px;
+}
+.imgtext{
+  color: $color5;
+  text-shadow: 1px 1px $color2;
+}
+
+
+.card-body.diffbg {
+  background-color: $bgcol;
+}
+
+.card-footer {
+  border-top: none !important;
+  background-color: transparent !important;
+
+}
+
+
+
+
+

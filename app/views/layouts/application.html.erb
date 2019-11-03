@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<html>
 
 <head>
   <meta charset="utf-8">
@@ -8,21 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag "application.js"%>
 </head>
 
 <body>
-<div class = "container-fluid">
+<div class="container-fluid">
+   <%= render "/layouts/top_nav" %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-
-  <ul class="hmenu">
-    <%= render 'devise/menu/registration_items' %>
-    <%= render 'devise/menu/login_items' %>
-  </ul>
   <%= yield %>
+</div>
 </body>
 
 </html>

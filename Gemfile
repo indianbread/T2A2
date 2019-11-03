@@ -63,6 +63,9 @@ gem "stripe", "~> 5.7"
 
 gem "faker", "~> 2.6"
 
+gem 'jquery-rails'
+
 gem 'bootstrap', '~> 4.3.1'
 
-gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
+

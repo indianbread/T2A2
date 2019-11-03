@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/admindashboard', to: "pages#admin_dashboard", as: "admin_dashboard"
   get '/userdashboard', to: 'pages#user_dashboard', as: 'user_dashboard'
-  get '/admin_products', to: 'products#admin_products', as: 'admin_products'
+
 
   get 'products/', to: "products#index", as: "products"
   get 'products/new', to:'products#new', as:'new_product'
@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'products/:id/edit', to:"products#edit", as: "edit_product"
   patch 'products/:id', to: 'products#update'
   delete '/products/:id', to: 'products#destroy'
+  get '/admin_products', to: 'products#admin_products', as: 'admin_products'
   
 
   get '/categories', to: "categories#index", as:"categories"

@@ -12,17 +12,61 @@
  *
  */
  // Custom bootstrap variables must be set or imported *before* bootstrap.
-@import "bootstrap";
+@import "../javascripts/application.js";
 @import "palette";
+@import 'pages';
+@import 'products';
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Tauri&display=swap');
+@import url('https://use.fontawesome.com/releases/v5.8.1/css/all.css');
+@import "top_nav";
+@import "bootstrap";
+
 
 body {
-  background-color: $color1;
+  background-color: $bgcol;
   font-family: 'Roboto Condensed', sans-serif;
   color: black;
+  width: 100vw;
+  margin: 0px;
+  padding: 0px; 
+
+}
+
+.navbar {
+  background-color: $color2 !important;
+  margin: 0px !important;
+}
+
+.container-fluid {
+  margin-top: 0px;
+  padding: 0px; 
+
+}
+
+.row.no-gutter {
+  padding: 0px !important
 }
 
 h1 {
   font-family: 'Tauri', sans-serif;
   color: $color5;
+}
+
+.card{
+  margin: 20px; 
+  
+}
+
+.card-body {
+  background-color: transparent;
+}
+
+a {
+  color: $color5 !important;
+  text-decoration: none !important;
+
+}
+
+a:hover {
+  color: $color1 !important;
 }

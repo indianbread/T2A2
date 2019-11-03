@@ -1,3 +1,21 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.bg-image {
+  background-color: white;
+  height: auto;
+  background-position: center center;
+  align-items: center;
+  justify-content: center;
+}
+
+.login{
+  background-color: $color3 ;
+}
+
+.col-md-6.bg-light.prodinfo {
+  background-color: $color3 !important;
+}

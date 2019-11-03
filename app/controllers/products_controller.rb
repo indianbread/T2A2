@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # authorize! :update, @product
+    authorize! :update, @product
   end
 
   def update

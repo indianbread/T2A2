@@ -4,7 +4,7 @@ class OrderLinesController < ApplicationController
   skip_load_resource :only => [:new, :create]
 
   def index
-    @order_lines = OrderLine.where(:order_id: order_id)
+    @order_lines = OrderLine.where(order_id: order_id)
   end
 
   def new

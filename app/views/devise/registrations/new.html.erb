@@ -1,79 +1,84 @@
-<div class = "row one">
-<h2>Sign up</h2>
+<div class="row one">
+  <h2>Sign up</h2>
 </div>
-<div class = "row form">
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<div class="form-group">
-  <%= render "devise/shared/error_messages", resource: resource %>
-</div>
+<div class="row form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <div class="form-group">
-    <%= f.label :email %> 
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"exampleInputEmail1" %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
+  <div class="form-group col-md-6">
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", id:"exampleInputEmail4" %>
   </div>
 
- <%= f.fields_for :user_info do |u| %>
-    <div class="form-group">
-    <%= u.label :first_name %><br>
-    <%= u.text_field :first_name %>
+  <%= f.fields_for :user_info do |u| %>
+  <div class="form-group col-md-6">
+    <%= u.label :first_name %>
+    <%= u.text_field :first_name, class:"form-control" %>
   </div>
-    <div class="form-group">
-    <%= u.label :surname %><br>
-    <%= u.text_field :surname %>
+  <div class="form-group col-md-6">
+    <%= u.label :surname %>
+    <%= u.text_field :surname, class:"form-control" %>
   </div>
-
-   <div class="form-group">
-    <%= u.label :gender %><br>
-    <% UserInfo.genders.keys.each do |g|%>
-     <div class="form-check-label">
-    <%= u.label g %>
+  
+  <%= u.label :gender %><br>
+  <% UserInfo.genders.keys.each do |g|%>
+  <div class="form-group">
+    <div class="form-check-label">
+      <%= u.label g %>
     </div>
-    <div class = "form-check-input">
-    <%= u.radio_button :gender, g %>
+    <div class="form-check-input">
+      <%= u.radio_button :gender, g %>
     </div>
     <% if g == resource.user_info.gender %>
     <% u.radio_button :gender, :checked => true %>
     <% end %>
     <% end %>
-    </div>
     <%end%>
-    <br>
+  </div>
+  <br>
 
-    <%= f.fields_for :addresses do |a| %>
+  <%= f.fields_for :addresses do |a| %>
+  <div class="form-group">
     <%= a.label :street_number %><br>
-    <%= a.text_field :street_number %>
-    <br>
+    <%= a.text_field :street_number, class:"form-control" %>
+  </div>
+  <div class="form-group col-md-6">
     <%= a.label :suburb %><br>
-    <%= a.text_field :suburb %>
-    <br>
+    <%= a.text_field :suburb, class:"form-control" %>
+  </div>
+  <div class="form-group col-md-2">
     <%= a.label :postcode %><br>
-    <%= a.number_field :suburb, step: 1, min: 0  %>
-    <br>
+    <%= a.number_field :suburb, step: 1, min: 0, class:"form-control" %>
+  </div>
+  <div class="form-group col-md-4">
     <%= a.label :state %><br>
-    <%= a.text_field :state %>
-    <br>
+    <%= a.text_field :state, class:"form-control" %>
+  </div>
+  <div class="form-group col-md-6">
     <%= a.label :country %><br>
-    <%= a.text_field :country %>
-    <br>
+    <%= a.text_field :country, class:"form-control" %>
+  </div>
+  <br>
 
-    <% end %>
+  <% end %>
 
-<div class="field">
+  <div class="form-group col-md-6">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group col-md-6">
     <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
   </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="form-group col-md-6">
+    <%= f.submit "Sign up" , class:"btn btn-secondary"%>
   </div>
-  </div>
+</div>
 <% end %>
 </div>
 <%= render "devise/shared/links" %>
-

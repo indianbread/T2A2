@@ -5,7 +5,9 @@
 }
 .new_user {
   width: 60%;
-  background-color: $color3;
+  background-image: url("header2"), linear-gradient(to right, rgba(204, 185, 177, 0.8), rgba(65, 70, 72, 0.8));
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 20px;
   border: 1px solid $color2;
   border-radius: 2%;

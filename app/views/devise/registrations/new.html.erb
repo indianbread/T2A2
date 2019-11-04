@@ -20,26 +20,23 @@
     <%= u.label :surname %>
     <%= u.text_field :surname, class:"form-control" %>
   </div>
-  
-  <%= u.label :gender %><br>
+ <div class="form-group col-md-6">
+ <div class="form-check-label">
+  <%= u.label :gender %>
+  </div>
   <% UserInfo.genders.keys.each do |g|%>
-  <div class="form-group">
     <div class="form-check-label">
       <%= u.label g %>
     </div>
-    <div class="form-check-input">
       <%= u.radio_button :gender, g %>
-    </div>
     <% if g == resource.user_info.gender %>
     <% u.radio_button :gender, :checked => true %>
     <% end %>
     <% end %>
+      </div>
     <%end%>
-  </div>
-  <br>
-
   <%= f.fields_for :addresses do |a| %>
-  <div class="form-group">
+  <div class="form-group col-md-10">
     <%= a.label :street_number %><br>
     <%= a.text_field :street_number, class:"form-control" %>
   </div>

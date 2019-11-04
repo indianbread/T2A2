@@ -1,7 +1,9 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
-
+<div class = "row one">
+<h1>List a product for sale</h1>
+</div>
+<div class = "form-row">
+<div class = "productform">
 <%= render 'form', product: @product %>
+</div>
+</div>
 
-<%= link_to 'View Product listings', products_path %>
-<%= link_to 'Home', root_path %>

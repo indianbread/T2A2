@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only:[:show, :edit, :new, :update, :delete]
   # before_action :set_product, only:[ :show, :edit, :update, :destroy]
   load_and_authorize_resource
-  skip_load_resource :only => [:new, :create, :index, :admin_products]
+  skip_load_resource :only => [:new, :create]
+  skip_authorize_resource :only => [:index, :show]
   # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
   def index

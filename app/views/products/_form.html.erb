@@ -1,85 +1,86 @@
-<%= form_with(model: product, local:true) do |form|%>
- <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product listing from being saved:</h2>
 
-      <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <%= form_with(model: product, local:true) do |form|%>
+    <% if product.errors.any? %>
+    <div class="form-group">
+      <div id="error_explanation">
+        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product listing from being saved:</h2>
+        <ul>
+          <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  <% end %>
+    <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div><br>
+    <div class="form-group col-md-6">
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div><br>
+    <div class="form-group col-md-6">
+      <%= form.label :description %>
+      <%= form.text_area :description, class:"form-control" %>
+    </div>
 
-  <div>
+    <div class="form-group col-md-6">
       <%= form.label :category_id %>
-      <%= form.select :category_id, options_for_select( Category.all.collect { |u| [u.name, u.id] }.sort, :selected => product.category_id ), {include_blank: 'Select Category'} %> 
+      <%= form.select :category_id, options_for_select( Category.all.collect { |u| [u.name, u.id] }.sort, :selected => product.category_id ), {include_blank: 'Select Category'} %>
     </div>
 
-    <div>
+    <div class="form-group col-md-6">
       <%= form.label :brand_id %>
-      <%= form.select :brand_id, options_for_select( Brand.all.collect { |u| [u.name, u.id] }.sort, :selected => product.brand_id ), {include_blank: 'Select Brand'} %> 
+      <%= form.select :brand_id, options_for_select( Brand.all.collect { |u| [u.name, u.id] }.sort, :selected => product.brand_id ), {include_blank: 'Select Brand'} %>
     </div>
 
-    <div>
-    <% if product.ingredients.any?%>
-    Existing ingredients:
-    <% product.ingredients.each do |ingredient| %>
-    <%= ingredient.name %>
-    <br>
-    <% end %>
-    <% end %>
-    Select ingredients to override current ingredients:
-    <%= form.label :ingredient_id %>
-    <%= form.select(:ingredient_id, Ingredient.all.collect {|p| [ p.name, p.id ] }.sort, 
+    <div class="form-group col-md-6">
+      <% if product.ingredients.any?%>
+      Existing ingredients:
+      <% product.ingredients.each do |ingredient| %>
+      <%= ingredient.name %>
+      <br>
+      <% end %>
+      <% end %>
+      <%= form.label :ingredient_id, 'Select ingredients to override current ingredients:' %><br>
+      <%= form.select(:ingredient_id, Ingredient.all.collect {|p| [ p.name, p.id ] }.sort, 
     { :prompt => "Please select"}, 
     { :multiple => true, :size => 5 }) %>
     </div>
+    <div class="form-group col-md-6">
+      Used:
+      <% Product.useds.keys.each do |u|%>
+      <%= form.label u %>
+      <%= form.radio_button :used, u %>
+      <% if u == product.used %>
+      <% form.radio_button :used, :checked => true %>
+      <% end %>
+      <% end %>
+    </div>
+    <div class="form-group col-md-6">
+    <%= form.label :expiry_date %>
+    <%= form.date_field :expiry_date, class:"form-control"%>
+  </div>
+  <div class="form-group col-md-6">
+    <%= form.label :price %> $
+    <%= form.number_field :price, step:0.5, min: 0, class:"form-control" %>
+  </div>
 
-    Used:<br>
+  <%= image_tag product.picture if product.picture.attached? %>
 
-     <% Product.useds.keys.each do |u|%>
-        <%= form.label u %>
-        <%= form.radio_button :used, u %>
-        <% if u == product.used %>
-        <% form.radio_button :used, :checked => true %>
-        <% end %>
-         <% end %>
-         <br>
-        <%= form.label :expiry_date %>
-        <%= form.date_field :expiry_date%>
-    </div>   
-   <div>
-        <%= form.label :price %> $
-        <%= form.number_field :price, step:0.5, min: 0 %>
-    </div>   
-
-<%= image_tag product.picture if product.picture.attached? %>
-
-    <div>
+  <div class="form-group col-md-6">
     <%= form.label :picture %>
-    <%= form.file_field :picture, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>
-    </div>
-    <br>
+    <%= form.file_field :picture, accept: 'image/png, image/gif, image/jpeg, image/jpg', class:"btn btn-link"  %>
+  </div>
+  <br>
 
-<%= image_tag product.receipt if product.receipt.attached? %>
-      <div>
+  <%= image_tag product.receipt if product.receipt.attached? %>
+  <div class="form-group col-md-6">
     <%= form.label :receipt %>
-    <%= form.file_field :receipt, accept: 'image/png, image/gif, image/jpeg, image/jpg' %>
-    </div>
-    <br>
-   <div class="actions">
+    <%= form.file_field :receipt, accept: 'image/png, image/gif, image/jpeg, image/jpg' , class:"btn btn-link" %>
+  </div>
+  <br>
+    <div class="form-group col-md-6">
     <%= form.submit %>
   </div>
 
-<% end %>
+  <% end %>

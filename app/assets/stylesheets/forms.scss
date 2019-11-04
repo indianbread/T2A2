@@ -3,6 +3,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.form-row {
+  align-items: center;
+  justify-content: center;
+}
 .new_user {
   width: 60%;
   background-image: url("header2"), linear-gradient(to right, rgba(204, 185, 177, 0.8), rgba(65, 70, 72, 0.8));
@@ -12,3 +17,34 @@
   border: 1px solid $color2;
   border-radius: 2%;
 }
+
+.editinfo{
+  width: 60%;
+  background-image: url("header2"), linear-gradient(to right, rgba(204, 185, 177, 0.8), rgba(65, 70, 72, 0.8));
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.edit_user
+{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.form-bottom {
+  width: 100%;
+}
+
+.row.form.products {
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 80%;
+}
+.productform {
+  background: $color3;
+  width: 60%;
+}
+
+

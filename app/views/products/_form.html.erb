@@ -35,10 +35,11 @@
 
     <div class="form-group col-md-6">
       <% if product.ingredients.any?%>
-      Existing ingredients:
+      Existing ingredients:<br>
       <% product.ingredients.each do |ingredient| %>
-      <%= ingredient.name %>
-      <br>
+      <ul>
+      <li><%= ingredient.name %></li>
+      </ul>
       <% end %>
       <% end %>
       <%= form.label :ingredient_id, 'Select ingredients to override current ingredients:' %><br>

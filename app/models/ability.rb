@@ -19,7 +19,10 @@ class Ability
     can :read, Brand, public: true 
 
     if user.present?  # additional permissions for logged in users (they can read their own posts)
-      can :create, :update, :delete, Product, user_id: user.id
+      can :read, Product
+      can :read, Category
+      can :read, Brand
+      can :crud, Product, user_id: user.id
       can :crud, UserInfo, user_id: user.id
       can :crud, Address, user_id: user.id
       can :read, :create, Order, user_id: user.id

@@ -97,13 +97,13 @@ end
   end
 
 
-  def set_product
-    id = params[:id]
-    @product = Product.find(id)
-    @brand = @product.brand
-    @category = @product.category
-    @ingredients = @product.ingredients
-  end
+  # def set_product
+  #   id = params[:id]
+  #   @product = Product.find(id)
+  #   @brand = @product.brand
+  #   @category = @product.category
+  #   @ingredients = @product.ingredients
+  # end
 
 
   # def set_user_products

@@ -1,2 +1,51 @@
-<h1>Orders#edit</h1>
-<p>Find me in app/views/orders/edit.html.erb</p>
+<div class="row one">
+  <h1>Editing order number: <%= @order.id %></h1>
+</div>
+<div class = "form-row">
+<div class = "productform">
+  <%= form_with(model: @order, local:true) do |form|%>
+  <% if @order.errors.any? %>
+  <div class="form-group">
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+  <div class="form-group col-md-6">
+    <%= form.label :user_id, "Orded By User ID" %>
+    <%= form.text_field :user_id, class:"form-control"%>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= form.label :created_at, "Order Date" %>
+    <%= form.text_field :created_at, class:"form-control" %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= form.label :total_amount %>
+    <%= form.number_field :total_amount %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <b>Products ordered:</b>
+  </div>
+  <%= form.fields_for :order_lines do |ol| %>
+    <div class="form-group col-md-6">
+    <%= ol.label :product_id, "Product ID" %>
+    <%= ol.text_field :product_id, class:"form-control"%>
+  </div>
+  <% end %>
+
+  <div class="form-group col-md-6">
+    <%= form.submit %>
+  </div>
+
+
+  <% end %>
+</div>
+</div>

@@ -4,6 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
+    alias_action :create, :read, :update, :destroy, to: :crud
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -18,9 +19,9 @@ class Ability
     can :read, Brand, public: true 
 
     if user.present?  # additional permissions for logged in users (they can read their own posts)
-      can :manage, Product, user_id: user.id
-      can :manage, UserInfo, user_id: user.id
-      can :manage, Address, user_id: user.id
+      can :create, :update, :delete, Product, user_id: user.id
+      can :crud, UserInfo, user_id: user.id
+      can :crud, Address, user_id: user.id
       can :read, :create, Order, user_id: user.id
       can :read, :create, OrderLine, user_id: user.id
       if user.admin?

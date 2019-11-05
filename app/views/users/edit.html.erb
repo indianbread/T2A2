@@ -1,6 +1,8 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
-
+<div class = "row one">
+<h1>Editing information for <%= @user.email%></h1>
+</div>
+<div class = "form-row">
+<div class = "productform">
 <%= render 'user_form', user: @user %>
 
 <h2>Addresses</h2>
@@ -27,3 +29,7 @@
 <%= link_to 'Admin Dashboard', admin_dashboard_path %>
 <br>
 <%= link_to 'Manage Users', users_path %>
+
+</div>
+</div>
+

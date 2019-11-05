@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # before_create :update_total
   # before_create :update_status
   load_and_authorize_resource
-  skip_load_resource :only => [:new, :create, :index]
+  skip_load_resource :only => [:new, :create]
   
   def index
     @orders = Order.all.sort_by { |k,v| k["created_at"]}.reverse
@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def edit
+ 
   end
 
   def update
@@ -48,7 +49,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:user_id, :total_amount, order_line_attributes: [:product_id])
+    params.require(:order).permit(:user_id, :total_amount, order_lines_attributes: [:product_id])
    end
 
   # def update_status

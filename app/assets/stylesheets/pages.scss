@@ -19,6 +19,10 @@
   align-items: top;
   padding: 20px;
 }
+
+.row.dashboard {
+  justify-content: center;
+}
 .imgtext{
   color: $color5;
   text-shadow: 1px 1px $color2;

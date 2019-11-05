@@ -4,7 +4,7 @@
 <div class="row no-gutter">
 <!-- The image half -->
  <div class="col-md-6 d-none d-md-flex bg-image">
-<%= image_tag @product.picture, size: '400', align: 'center'%>
+<%= image_tag @product.picture, size: '600', align: 'center'%>
 </div>
 
 <!-- The content half -->
@@ -74,9 +74,11 @@
 <br><br>
 <%= link_to 'Back', :back %>
 <br><br>
-<% if can? :edit, :delete, @product %>
+<% if user_signed_in? %>
+<% if can? :update, :delete, @product %>
 <%= link_to 'Edit product', edit_product_path(@product) %><br>
 <%= link_to 'Delete product', product_path(@product), method: :delete, data: {confirm: 'Are you sure you want to delete this listing?'} %>
+<% end %>
 <% end %>
 </p>
 </div>

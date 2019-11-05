@@ -1,15 +1,23 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-<table>
-<thead>
+<div class = "row">
+<h1>All Users</h1>
+</div>
+<div class = "row">
+<h3><%= link_to 'Add new user', new_user_path %></h3>
+<table class="table table-bordered">
+<thead class="thead-dark">
 <tr>
-<th>User</th>
+<th>User ID</th>
+<th>Email</th>
 <th>Date Registered</th>
 <th>Admin?</th>
+<th>View Details</th>
+<th>Edit User</th>
+<th>Delete User</th>
 </thead>
 <tbody>
 <% @users.each do |user| %>
 <tr>
+<td><%= user.id%></td>
 <td><%= user.email %></td>
 <td><%= user.created_at.localtime.to_date%></td>
 <td><%= user.admin %>
@@ -20,5 +28,5 @@
 <% end %>
 </tbody>
 </table>
-<br>
-<%= link_to 'Add new user', new_user_path %>
+
+</div>

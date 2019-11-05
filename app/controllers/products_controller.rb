@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   # before_action :set_product, only:[ :show, :edit, :update, :destroy]
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
-  skip_authorize_resource :only => [:index, :show]
+  skip_authorize_resource :only => [:index]
   # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
   def index
@@ -19,7 +19,6 @@ class ProductsController < ApplicationController
 
   
   def show
-
     session = Stripe::Checkout::Session.create(
       payment_method_types: [ 'card' ],
       customer_email: current_user.email,

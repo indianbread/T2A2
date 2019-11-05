@@ -34,9 +34,6 @@
         <%= link_to 'Shop Products', products_path, class:"nav-link" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Contact', root_path, class:"nav-link" %>
-      </li>
-      <li class="nav-item">
         <% if user_signed_in? %>
         <%= link_to('Edit registration', edit_user_registration_path, class:"nav-link") %>
         <% else %>

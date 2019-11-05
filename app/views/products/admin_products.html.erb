@@ -1,9 +1,9 @@
 <table>
 <thead>
 <tr>
+<th>Product ID</th>
 <th>Category</th>
 <th>Brand</th>
-<th>Product ID</th>
 <th>Product Name</th>
 <th>Description</th>
 <th>Listed By</th>
@@ -14,9 +14,9 @@
 <tbody>
 <% @products.each do |product| %>
 <tr>
+<td><%= product.id %></td>
 <td><%= product.category.name %></td>
 <td><%= product.brand.name %></td>
-<td><%= product.id %></td>
 <td><%= product.name %></td>
 <td><%= product.description %></td>
 <td><%= product.user.email %></td>

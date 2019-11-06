@@ -1,7 +1,9 @@
 class OrderLinesController < ApplicationController
   #delete this if not required
-  load_and_authorize_resource
+  load_and_authorize_resource :order
+  load_and_authorize_resource :order_line, through: :order
   skip_load_resource :only => [:new, :create]
+  
 
   def index
     @order_lines = OrderLine.where(order_id: order_id)
@@ -42,7 +44,7 @@ class OrderLinesController < ApplicationController
     params.require(:order_line).permit(:product_id, :order_id)
   end
 
-  def set_order
-    order_id = params[:id]
-  end
+  # def set_order
+  #   order_id = params[:id]
+  # end
 end

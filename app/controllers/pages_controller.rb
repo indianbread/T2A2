@@ -19,6 +19,10 @@ class PagesController < ApplicationController
 
 
   def user_dashboard
+    @orders = Order.accessible_by(current_ability, :read).sort_by { |k,v| k["created_at"]}.reverse
+    @current_products = Product.where(sold: false).accessible_by(current_ability, :update).sort_by { |k,v| k["created_at"]}.reverse
+    @previous_products = Product.where(sold: true).accessible_by(current_ability, :update).sort_by { |k,v| k["created_at"]}.reverse
+
   end
   
   private

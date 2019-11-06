@@ -10,4 +10,5 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :user_info, :addresses, :orders
 
+
 end

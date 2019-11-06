@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   # before_create :update_status
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
+
   
   def index
     @orders = Order.all.sort_by { |k,v| k["created_at"]}.reverse

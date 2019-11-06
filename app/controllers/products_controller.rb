@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
   skip_authorize_resource :only => [:index]
+ 
   # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
   def index
@@ -65,7 +66,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    
+  
   end
 
   def create

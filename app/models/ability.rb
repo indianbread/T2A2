@@ -16,19 +16,23 @@ class Ability
 
     can :read, Product, public: true
     can :read, Category, public: true
-    can :read, Brand, public: true 
+    can :read, Brand, public: true
+    can :read, Ingredient, public: true
+
 
     if user.present?  # additional permissions for logged in users (they can read their own posts)
       can :read, Product
       can :read, Category
       can :read, Brand
+      can :read, Ingredient
+      can :read, :create, Order, user_id: user.id
+      can :read, :create, OrderLine, order: { user: user.id} 
       can :crud, Product, user_id: user.id
+      can :crud, ProductIngredient
       can :crud, UserInfo, user_id: user.id
       can :crud, Address, user_id: user.id
-      can :read, :create, Order, user_id: user.id
-      can :read, :create, OrderLine, user_id: user.id
       if user.admin?
-        can :manage, :all
+        can :manage, :all 
       end
     end
 

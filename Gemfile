@@ -69,3 +69,5 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem 'popper_js', '~> 1.14.5'
 
+gem 'ransack'
+

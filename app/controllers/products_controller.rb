@@ -8,7 +8,9 @@ class ProductsController < ApplicationController
   # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
   def index
-    @products = Product.where(sold: false)
+    @q = Product.where(sold: false).ransack(params[:q])
+    @products = @q.result.includes(:category, :brand)
+    # @products = Product.where(sold: false)
   end
 
   def admin_products

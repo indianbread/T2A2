@@ -75,8 +75,11 @@
 <%= link_to 'Back', :back %>
 <br><br>
 <% if can? :update, @product %>
+<% if @product.sold == false %>
+
 <%= link_to 'Edit product', edit_product_path(@product) %><br>
 <%= link_to 'Delete product', product_path(@product), method: :delete, data: {confirm: 'Are you sure you want to delete this listing?'} %>
+<% end %>
 <% end %>
 </p>
 </div>

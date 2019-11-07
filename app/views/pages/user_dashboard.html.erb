@@ -60,7 +60,7 @@
 <th>Description</th>
 <th>Date Listed </th>
 <th>Price </th>
-<th colspan = "10"></th>
+<th colspan = "8"></th>
 
 </thead>
 <tbody>
@@ -76,8 +76,6 @@
 
 
 <td><%= link_to 'View Details', product_path(product) %></td>
-<td><%= link_to 'Edit', edit_product_path(product) %></td>
-<td><%= link_to 'Delete', product_path(product), method: :delete, data: {confirm: 'Are you sure?'} %></td>
 </tr>
 <% end %>
 </tbody>

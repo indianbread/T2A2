@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   def index
   @categories = Category.all
-  @recent_products = Product.last(5)
+  @recent_products = Product.where(sold: false).last(5)
   end
 
   def not_found

@@ -26,7 +26,7 @@ class Ability
       can :read, Brand
       can :read, Ingredient
       can :read, :create, Order, user_id: user.id
-      can :read, :create, OrderLine, order: { user: user.id} 
+      # can :read, :create, OrderLine, order: { user: user.id} 
       can :crud, Product, user_id: user.id
       can :crud, ProductIngredient
       can :crud, UserInfo, user_id: user.id

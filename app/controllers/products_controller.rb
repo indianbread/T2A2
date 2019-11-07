@@ -48,6 +48,9 @@ class ProductsController < ApplicationController
 
   def edit
     authorize! :update, @product
+    if @product.sold == true
+      redirect_to product_path, alert: 'Sold items cannot be modified'
+    end
   end
 
   def update

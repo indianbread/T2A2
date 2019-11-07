@@ -43,9 +43,10 @@
     </ul>
   </div>
     <span class="navbar-text">
+    <%= notice %> 
     <% if user_signed_in? %>
     Logged in as <%= current_user.email%>
-    <% end %>
+    <% end %> 
   </span>
 </nav>
 

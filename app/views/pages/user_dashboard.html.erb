@@ -59,8 +59,9 @@
 <th>Product Name</th>
 <th>Description</th>
 <th>Date Listed </th>
+<th>Date Sold</th>
 <th>Price </th>
-<th colspan = "8"></th>
+<th colspan = "9"></th>
 
 </thead>
 <tbody>
@@ -72,6 +73,7 @@
 <td><%= product.name %></td>
 <td><%= product.description %></td>
 <td><%= product.created_at.localtime.to_date%></td>
+<td><%= product.order_line.created_at.localtime.to_date%></td>
 <td><%= number_to_currency(product.price) %></td>
 
 

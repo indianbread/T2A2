@@ -4,25 +4,25 @@
 <%= render 'user_form', user: @user %>
 
 <h2>Addresses</h2>
-  <% if @user.addresses.first.id == nil %>
- An address is required for purchases
-  <br>
-  <% else %>
-    <%@user.addresses.each do |address| %>
-      <% counter = 1%>
-      <%= "Address #{counter}: " %><br>
-      <%= address.street_number%>
-      <br>
-      <%= address.suburb%>, 
-      <%= address.state%> <%= address.postcode%>
-      <br>
-      <%= address.country%>
-      <br>
-      <% counter += 1%>
-    <% end%>
-  <% end%>
-      <%= link_to 'Manage Addresses', addresses_path(@user) %>
-      <br>
+<% if @user.addresses.first.id == nil %>
+An address is required for purchases
+<br>
+<% else %>
+<%@user.addresses.each do |address| %>
+<% counter = 1%>
+<%= "Address #{counter}: " %><br>
+<%= address.street_number%>
+<br>
+<%= address.suburb%>,
+<%= address.state%> <%= address.postcode%>
+<br>
+<%= address.country%>
+<br>
+<% counter += 1%>
+<% end%>
+<% end%>
+<%= link_to 'Manage Addresses', addresses_path(@user) %>
+<br>
 
 <%= link_to 'Back', :back %>
 <br>

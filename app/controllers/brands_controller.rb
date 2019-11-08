@@ -3,12 +3,12 @@ class BrandsController < ApplicationController
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
   skip_authorize_resource :only => [:index]
+
   def index
     @brands = Brand.all
   end
 
   def edit
-
   end
 
   def update
@@ -18,8 +18,9 @@ class BrandsController < ApplicationController
       render :edit
     end
   end
-def show
-end
+
+  def show
+  end
 
   def new
     @brand = Brand.new
@@ -41,8 +42,8 @@ end
 
   private
 
-def brand_params
-  params.require(:brand).permit(:name)
-end
+  def brand_params
+    params.require(:brand).permit(:name)
+  end
 
 end

@@ -1,88 +1,87 @@
-<div class = "row one">
-<h1>Administrator Dashboard </h1>
+<div class="row one">
+  <h1>Administrator Dashboard </h1>
 </div>
-<div class = "row dashboard">
-<div class="card" style="width: 15rem;">
-<i class="fas fa-users-cog card-img-top porticon"></i>
-  <div class="card-body diffbg">
-    <h5 class="card-title">Manage Users</h5>
-    <p class="card-text">
-    <ul>
-    <li>View list of users</li>
-    <li>Edit user Details</li>
-    <li>Delete users</li>
-    <li>Add new users </li>
-    </p>
+<div class="row dashboard">
+  <div class="card" style="width: 15rem;">
+    <i class="fas fa-users-cog card-img-top porticon"></i>
+    <div class="card-body diffbg">
+      <h5 class="card-title">Manage Users</h5>
+      <p class="card-text">
+        <ul>
+          <li>View list of users</li>
+          <li>Edit user Details</li>
+          <li>Delete users</li>
+          <li>Add new users </li>
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Manage Users', users_path, class:"btn btn-outline-dark" %>
+    </div>
   </div>
-  <div class="card-footer">
-   <%= link_to 'Manage Users', users_path, class:"btn btn-outline-dark" %>
-   </div>
-</div>
 
-<div class="card" style="width: 15rem;">
-<i class="far fa-folder-open card-img-top porticon"></i>
-  <div class="card-body diffbg">
-    <h5 class="card-title">Manage Categories</h5>
-    <p class="card-text">
-    <ul>
-    <li>View categories</li>
-    <li>Edit categories</li>
-    <li>Delete categories</li>
-    <li>Add new categories </li>
-    </p>
+  <div class="card" style="width: 15rem;">
+    <i class="far fa-folder-open card-img-top porticon"></i>
+    <div class="card-body diffbg">
+      <h5 class="card-title">Manage Categories</h5>
+      <p class="card-text">
+        <ul>
+          <li>View categories</li>
+          <li>Edit categories</li>
+          <li>Delete categories</li>
+          <li>Add new categories </li>
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Manage Categories', categories_path, class:"btn btn-outline-dark" %>
+    </div>
   </div>
-  <div class="card-footer">
-   <%= link_to 'Manage Categories', categories_path, class:"btn btn-outline-dark" %>
-   </div>
-</div>
 
-<div class="card" style="width: 15rem;">
-<i class="fas fa-trademark card-img-top porticon"></i>
-  <div class="card-body diffbg">
-    <h5 class="card-title">Manage Brands</h5>
-    <p class="card-text">
-    <ul>
-    <li>View brands</li>
-    <li>Edit brands</li>
-    <li>Delete brands</li>
-    <li>Add new brands </li>
-    </p>
+  <div class="card" style="width: 15rem;">
+    <i class="fas fa-trademark card-img-top porticon"></i>
+    <div class="card-body diffbg">
+      <h5 class="card-title">Manage Brands</h5>
+      <p class="card-text">
+        <ul>
+          <li>View brands</li>
+          <li>Edit brands</li>
+          <li>Delete brands</li>
+          <li>Add new brands </li>
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Manage Brands', brands_path, class:"btn btn-outline-dark" %>
+    </div>
   </div>
-  <div class="card-footer">
-   <%= link_to 'Manage Brands', brands_path, class:"btn btn-outline-dark" %>
-   </div>
-</div>
 
-<div class="card" style="width: 15rem;">
-<i class="fas fa-shopping-basket card-img-top porticon"></i>
-  <div class="card-body diffbg">
-    <h5 class="card-title">Manage Product Listings</h5>
-    <p class="card-text">
-    <ul>
-    <li>View all current and previous product listings</li>
-    <li>Edit product listings</li>
-    <li>Delete product listings</li>
-    <li>Add new product listings </li>
-    </p>
+  <div class="card" style="width: 15rem;">
+    <i class="fas fa-shopping-basket card-img-top porticon"></i>
+    <div class="card-body diffbg">
+      <h5 class="card-title">Manage Product Listings</h5>
+      <p class="card-text">
+        <ul>
+          <li>View all current and previous product listings</li>
+          <li>Edit product listings</li>
+          <li>Delete product listings</li>
+          <li>Add new product listings </li>
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Manage Product Listings', admin_products_path, class:"btn btn-outline-dark" %>
+    </div>
   </div>
-  <div class="card-footer">
-   <%= link_to 'Manage Product Listings', admin_products_path, class:"btn btn-outline-dark" %>
-   </div>
-</div>
 
-<div class="card" style="width: 15rem;">
-<i class="fas fa-shopping-cart card-img-top porticon"></i>
-  <div class="card-body diffbg">
-    <h5 class="card-title">Manage Orders</h5>
-    <p class="card-text">
-    <ul>
-    <li>View all current and previous orders for all users</li>
-    <li>Edit orders</li>
-    <li>Delete orders</li>
-    </p>
+  <div class="card" style="width: 15rem;">
+    <i class="fas fa-shopping-cart card-img-top porticon"></i>
+    <div class="card-body diffbg">
+      <h5 class="card-title">Manage Orders</h5>
+      <p class="card-text">
+        <ul>
+          <li>View all current and previous orders for all users</li>
+          <li>Edit orders</li>
+          <li>Delete orders</li>
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Manage Orders', orders_path, class:"btn btn-outline-dark" %>
+    </div>
   </div>
-  <div class="card-footer">
-  <%= link_to 'Manage Orders', orders_path, class:"btn btn-outline-dark" %>
-   </div>
-</div>
-

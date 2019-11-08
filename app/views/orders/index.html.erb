@@ -1,28 +1,28 @@
-<div class = "row">
-<h1>All Orders</h1>
-<table class="table table-bordered">
-<thead class="thead-dark">
-<tr>
-<th>Order #</th>
-<th>Date Created</th>
-<th>Ordered By</th>
-<th>Total amount</th>
-<th>Show Details</th>
-<th>Edit Order</th>
-<th>Delete Order</th>
-</thead>
-<tbody>
-<% @orders.each do |order| %>
-<tr>
-<td><%= order.id %></td>
-<td><%= order.created_at.localtime.to_date%></td>
-<td><%= order.user.email %></td>
-<td><%= number_to_currency(order.total_amount) %></td>
-<td><%= link_to 'View Details', order_path(order) %></td>
-<td><%= link_to 'Edit', edit_order_path(order) %></td>
-<td><%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: 'Are you sure?'} %></td>
-</tr>
-<% end %>
-</tbody>
-</table>
+<div class="row">
+  <h1>All Orders</h1>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Order #</th>
+        <th>Date Created</th>
+        <th>Ordered By</th>
+        <th>Total amount</th>
+        <th>Show Details</th>
+        <th>Edit Order</th>
+        <th>Delete Order</th>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.created_at.localtime.to_date%></td>
+        <td><%= order.user.email %></td>
+        <td><%= number_to_currency(order.total_amount) %></td>
+        <td><%= link_to 'View Details', order_path(order) %></td>
+        <td><%= link_to 'Edit', edit_order_path(order) %></td>
+        <td><%= link_to 'Delete', order_path(order), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

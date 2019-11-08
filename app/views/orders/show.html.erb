@@ -1,27 +1,27 @@
-<div class = "row">
-<h1>Viewing order # <%= @order.id %></h1>
+<div class="row">
+  <h1>Viewing order # <%= @order.id %></h1>
 </div>
-<div class = "row">
-Date Created: <%= @order.created_at.localtime.to_date%><br>
-Ordered By: <%= @order.user.email%><br>
-Total amount: <%= number_to_currency(@order.total_amount) %><br>
-<% @order.order_lines.each do |ol|%>
-Brand: <%= ol.product.brand.name %><br>
-Product Name: <%= ol.product.name %><br>
-Listed By: <%= ol.product.user.email %><br>
-Price: <%= number_to_currency(ol.product.price) %><br>
-<% end %>
+<div class="row">
+  Date Created: <%= @order.created_at.localtime.to_date%><br>
+  Ordered By: <%= @order.user.email%><br>
+  Total amount: <%= number_to_currency(@order.total_amount) %><br>
+  <% @order.order_lines.each do |ol|%>
+  Brand: <%= ol.product.brand.name %><br>
+  Product Name: <%= ol.product.name %><br>
+  Listed By: <%= ol.product.user.email %><br>
+  Price: <%= number_to_currency(ol.product.price) %><br>
+  <% end %>
 </div>
-<div class = "row">
-<% if can? :update, @order %>
-<p class = "p-3">
-<%= link_to 'Edit', edit_order_path(@order) %>
-</p>
-<p class = "p-3">
-<%= link_to 'Delete', order_path(@order), method: :delete, data: {confirm: 'Are you sure?'} %>
-</p>
-<% end %>
-<p class = "p-3">
-<%= link_to 'Back', :back %>
-</p>
+<div class="row">
+  <% if can? :update, @order %>
+  <p class="p-3">
+    <%= link_to 'Edit', edit_order_path(@order) %>
+  </p>
+  <p class="p-3">
+    <%= link_to 'Delete', order_path(@order), method: :delete, data: {confirm: 'Are you sure?'} %>
+  </p>
+  <% end %>
+  <p class="p-3">
+    <%= link_to 'Back', :back %>
+  </p>
 </div>

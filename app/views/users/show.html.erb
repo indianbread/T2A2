@@ -1,39 +1,37 @@
-
 <h2> Viewing information for <%= @user.email%> </h2>
 
 Date registered: <%= @user.created_at.localtime.to_date%><br>
 Email: <%=@user.email%><br>
 <h3> User Information </h3>
 <% if @user.user_info == nil%>
-User information not recorded
+  User information not recorded
 <% else %>
-<b>First Name:</b> <%= @user.user_info.first_name %><br>
-<b>Last Name:</b> <%= @user.user_info.surname %><br>
-<b>Gender:</b> <%= @user.user_info.gender %><br>
-
+  <b>First Name:</b> <%= @user.user_info.first_name %><br>
+  <b>Last Name:</b> <%= @user.user_info.surname %><br>
+  <b>Gender:</b> <%= @user.user_info.gender %><br>
 <% end %>
- 
-  <br>
-  <h2>Addresses</h2>
-  <% if @user.addresses.any? %>
-   <%@user.addresses.each do |address| %>
-  <% counter = 1%>
-  <b>Address <%=counter%>:</b><br>
-  <%= address.street_number%>
-  <br>
-  <%= address.suburb%>, 
-   <%= address.state%> <%= address.postcode%>
-  <br>
-  <%= address.country%>
-  <br>
-  <% counter += 1%>
-  <br>
+
+<br>
+<h2>Addresses</h2>
+<% if @user.addresses.any? %>
+  <%@user.addresses.each do |address| %>
+    <% counter = 1%>
+    <b>Address <%=counter%>:</b><br>
+    <%= address.street_number%>
+    <br>
+    <%= address.suburb%>,
+    <%= address.state%> <%= address.postcode%>
+    <br>
+    <%= address.country%>
+    <br>
+    <% counter += 1%>
+    <br>
   <% end%>
-   <% else %>
+<% else %>
   There are no addresses recorded for this user yet
   <br>
-  <%end%>
-   
+<%end%>
+
 <%= link_to "Back", :back %>
 <br>
 <%= link_to 'Admin Dashboard', admin_dashboard_path %>

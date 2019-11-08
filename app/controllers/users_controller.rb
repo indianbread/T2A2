@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def new
+    #need to create new objects as registration form contains nested fields from UserInfo and Address models
     @user = User.new
     @user.user_info = UserInfo.new
     @address = @user.addresses.new
@@ -18,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def create
+    # allows admins to create user accounts with blank passwords
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
     params[:user].delete(:current_password) if params[:user][:password].blank? and params[:user][:password_confirmation].blank? and params[:user][:password_confirmation].blank?
@@ -35,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    # allows admins to update user accounts without requiring passwords
     params[:user].delete(:password) if params[:user][:password].blank?
     params[:user].delete(:password_confirmation) if params[:user][:password].blank? and params[:user][:password_confirmation].blank?
     params[:user].delete(:current_password) if params[:user][:password].blank? and params[:user][:password_confirmation].blank? and params[:user][:current_password].blank?
@@ -60,6 +63,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
+    #sanitised params to permit attributes from UserInfo and Address models to enable nested form fields to submit data to these tables
      params.require(:user).permit(:email, :password, :password_confirmation,:current_password, :admin, user_info_attributes: [:first_name, :surname, :gender], addresses_attributes: [:street_number,:suburb, :postcode, :state, :country])
   end
 

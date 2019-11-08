@@ -1,24 +1,24 @@
-<h1>Brands#index</h1>
-<p>Find me in app/views/brands/index.html.erb</p>
-<table>
-<thead>
-<tr>
-<th>Category Name</th>
-</thead>
-<tbody>
-<% @brands.each do |brand| %>
-<tr>
-<td><%= brand.name %></td>
-<% if can? :edit, :delete, @brand %>
-<td><%= link_to 'Edit', edit_brand_path(brand) %></td>
-<td><%= link_to 'Delete', brand_path(brand), method: :delete, data: {confirm: 'Are you sure?'} %></td>
-<%else%>
-<td></td>
-<td></td>
-<% end %>
-</tr>
-<% end %>
-</tbody>
+<table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>Category Name</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @brands.each do |brand| %>
+    <tr>
+      <td><%= brand.name %></td>
+      <% if can? :edit, :delete, @brand %>
+      <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
+      <td><%= link_to 'Delete', brand_path(brand), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <%else%>
+      <td></td>
+      <td></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 <br>
 <%= link_to 'Add new brand', new_brand_path %>

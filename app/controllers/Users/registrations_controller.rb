@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  #before actions required to accommodate additional parameters from nested fields in user tables
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
     super do
-    @user.user_info = UserInfo.new
-    @address = @user.addresses.new
+    @user.user_info = UserInfo.new #creating new user info object when a new user is created
+    @address = @user.addresses.new # creating new address object when a new user is created
     end
   end
 
@@ -50,6 +51,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   # If you have extra params to permit, append them to the sanitizer.
+  
+  #extra params required as fields from address and user info table are nested in the user registration form
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [user_info_attributes: [:first_name, :surname, :gender], addresses_attributes: [:street_number,:suburb, :postcode, :state, :country]])
   end

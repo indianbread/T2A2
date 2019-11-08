@@ -1,35 +1,34 @@
-<div class = "row one">
-<h1>Editing information for <%= @user.email%></h1>
+<div class="row one">
+  <h1>Editing information for <%= @user.email%></h1>
 </div>
-<div class = "form-row">
-<div class = "productform">
-<%= render 'user_form', user: @user %>
+<div class="form-row">
+  <div class="productform">
+    <%= render 'user_form', user: @user %>
 
-<h2>Addresses</h2>
-  <% if @user.addresses.any? %>
-  <%@user.addresses.each do |address| %>
-      <% counter = 1%>
-      <b><%= "Address #{counter}: " %></b><br>
-      <%= address.street_number%>
-      <br>
-      <%= address.suburb%>, 
-      <%= address.state%> <%= address.postcode%>
-      <br>
-      <%= address.country%>
-      <br>
-      <% counter += 1%>
+    <h2>Addresses</h2>
+    <% if @user.addresses.any? %>
+    <%@user.addresses.each do |address| %>
+    <% counter = 1%>
+    <b><%= "Address #{counter}: " %></b><br>
+    <%= address.street_number%>
+    <br>
+    <%= address.suburb%>,
+    <%= address.state%> <%= address.postcode%>
+    <br>
+    <%= address.country%>
+    <br>
+    <% counter += 1%>
     <% end%>
-  <br>
-  <% else %>
-  There are no addresses recorded for this user yet
-  <br>
-  <% end%>
-      <%= link_to 'Manage Addresses', addresses_path(@user) %>
-      <br>
-<%= link_to 'Admin Dashboard', admin_dashboard_path %>
-<br>
-<%= link_to 'Manage Users', users_path %>
+    <br>
+    <% else %>
+    There are no addresses recorded for this user yet
+    <br>
+    <% end%>
+    <%= link_to 'Manage Addresses', addresses_path(@user) %>
+    <br>
+    <%= link_to 'Admin Dashboard', admin_dashboard_path %>
+    <br>
+    <%= link_to 'Manage Users', users_path %>
 
+  </div>
 </div>
-</div>
-

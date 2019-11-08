@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   skip_load_resource :only => [:new, :create]
   
   def index
+    # sort orders reverese chronologically by date created
     @orders = Order.all.sort_by { |k,v| k["created_at"]}.reverse
   end
 
@@ -10,7 +11,6 @@ class OrdersController < ApplicationController
   end
 
   def edit
- 
   end
 
   def update

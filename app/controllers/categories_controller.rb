@@ -2,18 +2,13 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
-  skip_authorize_resource :only => [:index]
+  skip_authorize_resource :only => [:index] #any user can read the categories
+
   def index
     @categories = Category.all
   end
 
-  def cat_products
-    cat_id = params[:id]
-    @products = Product.where(category_id: cat_id, sold: false)
-  end
-  
   def edit
-
   end
 
   def update
@@ -23,8 +18,9 @@ class CategoriesController < ApplicationController
       render :edit
     end
   end
-def show
-end
+
+  def show
+  end
 
   def new
     @category = Category.new
@@ -46,8 +42,8 @@ end
 
   private
 
-def category_params
-  params.require(:category).permit(:name)
-end
+  def category_params
+    params.require(:category).permit(:name)
+  end
 
 end

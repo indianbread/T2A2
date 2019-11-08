@@ -1,49 +1,48 @@
-<div class = "row one">
-<h2>All Products</h2>
+<div class="row one">
+  <h2>All Products</h2>
 </div>
-<div class = "row">
-<form class="form-inline">
-<%= search_form_for @q do |f| %>
-  <div class="col-auto">
-  <%= f.label :name_cont, "Name Contains" %>
-  <%= f.search_field :name_cont, class:"form-control mb-2" %>
-  </div>
-<div class="col-auto">
-    <%= f.label :brand_name_cont, "Brand Contains" %>
-  <%= f.search_field :brand_name_cont, class:"form-control mb-2" %>
-  </div>
-<div class="col-auto">
-  <%= f.label :category_name_cont, "Category Contains"%>
-  <%= f.search_field :category_name_cont, class:"form-control mb-2" %>
-</div>
-  <div class = "actions"><%= f.submit "Search", class:"btn btn-secondary" %></div>
-<% end %>
-<div class="col-auto">
-Sort By: 
-</div>
-<div class = "col-auto">
-<%= sort_link @q, :created_at, "Date Listed"%>
-</div>
-<div class="col-auto">
- <%= sort_link @q, :price, "Price" %>
- </div>
+<div class="row">
+  <form class="form-inline">
+    <%= search_form_for @q do |f| %>
+    <div class="col-auto">
+      <%= f.label :name_cont, "Name Contains" %>
+      <%= f.search_field :name_cont, class:"form-control mb-2" %>
+    </div>
+    <div class="col-auto">
+      <%= f.label :brand_name_cont, "Brand Contains" %>
+      <%= f.search_field :brand_name_cont, class:"form-control mb-2" %>
+    </div>
+    <div class="col-auto">
+      <%= f.label :category_name_cont, "Category Contains"%>
+      <%= f.search_field :category_name_cont, class:"form-control mb-2" %>
+    </div>
+    <div class="actions"><%= f.submit "Search", class:"btn btn-secondary" %></div>
+    <% end %>
+    <div class="col-auto">
+      Sort By:
+    </div>
+    <div class="col-auto">
+      <%= sort_link @q, :created_at, "Date Listed"%>
+    </div>
+    <div class="col-auto">
+      <%= sort_link @q, :price, "Price" %>
+    </div>
 </div>
 </div>
 <div class="row">
-<% @products.each do |product|%>
-<div class="card" style="width: 18rem;">
-  <%= image_tag product.picture, class:"card-img-top", alt:"Card image cap" %>
-  <div class="card-body diffbg">
-    <h5 class="card-title"><%= product.brand.name %> <%= product.name %> <%= number_to_currency(product.price) %></h5>
-    <small class="text-muted"><%= product.category.name %> <br>Listed on <%= product.created_at.localtime.to_date%></small> 
-    <p class="card-text"><%= product.description%></p>
+  <% @products.each do |product|%>
+  <div class="card" style="width: 18rem;">
+    <%= image_tag product.picture, class:"card-img-top", alt:"Card image cap" %>
+    <div class="card-body diffbg">
+      <h5 class="card-title"><%= product.brand.name %> <%= product.name %> <%= number_to_currency(product.price) %></h5>
+      <small class="text-muted"><%= product.category.name %> <br>Listed on
+        <%= product.created_at.localtime.to_date%></small>
+      <p class="card-text"><%= product.description%></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'View Details', product_path(product), class:"btn btn-outline-dark" %>
+    </div>
   </div>
-  <div class="card-footer">
-   <%= link_to 'View Details', product_path(product), class:"btn btn-outline-dark" %>
-   </div>
-</div>
-<% end %>
+  <% end %>
 </div>
 </div>
-
-

@@ -1,32 +1,32 @@
-<div class = "row">
-<h1>All Users</h1>
+<div class="row">
+  <h1>All Users</h1>
 </div>
-<div class = "row">
-<h3><%= link_to 'Add new user', new_user_path %></h3>
-<table class="table table-bordered">
-<thead class="thead-dark">
-<tr>
-<th>User ID</th>
-<th>Email</th>
-<th>Date Registered</th>
-<th>Admin?</th>
-<th>View Details</th>
-<th>Edit User</th>
-<th>Delete User</th>
-</thead>
-<tbody>
-<% @users.each do |user| %>
-<tr>
-<td><%= user.id%></td>
-<td><%= user.email %></td>
-<td><%= user.created_at.localtime.to_date%></td>
-<td><%= user.admin %>
-<td><%= link_to 'View Details', user_path(user) %></td>
-<td><%= link_to 'Edit', edit_user_path(user) %></td>
-<td><%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: 'Are you sure?'} %></td>
-</tr>
-<% end %>
-</tbody>
-</table>
+<div class="row">
+  <h3><%= link_to 'Add new user', new_user_path %></h3>
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>User ID</th>
+        <th>Email</th>
+        <th>Date Registered</th>
+        <th>Admin?</th>
+        <th>View Details</th>
+        <th>Edit User</th>
+        <th>Delete User</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id%></td>
+        <td><%= user.email %></td>
+        <td><%= user.created_at.localtime.to_date%></td>
+        <td><%= user.admin %>
+        <td><%= link_to 'View Details', user_path(user) %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 </div>

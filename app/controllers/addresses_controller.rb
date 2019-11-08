@@ -1,8 +1,10 @@
 class AddressesController < ApplicationController
+  # from Devise gem to authenticate the user to ensure only registered users have access to content other than home page and product listing
   before_action :authenticate_user!
   # from cancancan gem to set the address and authorise the current user's permission to view the content
   load_and_authorize_resource
-  skip_load_resource :only => [:new, :create]
+  skip_load_resource :only => [:new, :create] # an address ID is not required to be parsed when adding a new object
+  
   def index
     @addresses = current_user.addresses
   end
@@ -35,9 +37,8 @@ class AddressesController < ApplicationController
   end
 
   def destroy
-    if
-    @address.destroy
-    redirect_to addresses_path, notice:'Address Successfully Removed'
+    if @address.destroy
+      redirect_to addresses_path, notice:'Address Successfully Removed'
     else
       render notice: 'Error occurred: Address unable to be removed'
     end
@@ -47,5 +48,6 @@ class AddressesController < ApplicationController
 
   def address_params
     params.require(:address).permit(:user_id, :street_number, :suburb, :postcode, :state, :country)
-end
+  end
+
 end

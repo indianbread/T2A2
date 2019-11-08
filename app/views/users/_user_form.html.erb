@@ -1,64 +1,64 @@
 <%= form_with(model: user, local:true) do |f| %>
- <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<% if user.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+</div>
 <br>
-  Admin User&#63; <%= f.check_box :admin %>
-  <br>
-  <br>
-
-  <%= f.fields_for :user_info do |u| %>
-    <div class="field">
-    <%= u.label :first_name %><br>
-    <%= u.text_field :first_name %>
-  </div>
-
-    <div class="field">
-    <%= u.label :surname %><br>
-    <%= u.text_field :surname %>
-  </div>
-
-    <div class="field">
-    <%= u.label :gender %><br>
-    <% UserInfo.genders.keys.each do |g|%>
-    <%= u.label g %>
-    <%= u.radio_button :gender, g %>
-    <% if g == user.user_info.gender %>
-    <% u.radio_button :gender, :checked => true %>
-    <% end %>
-    <% end %>
-  </div>
-  <% end %>
-  <br>
-  <div class="field">
-    <%= f.label :password %> <br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+Admin User&#63; <%= f.check_box :admin %>
 <br>
-  <div class="actions">
-    <%= f.submit "Submit" %>
-  </div>
+<br>
+
+<%= f.fields_for :user_info do |u| %>
+<div class="field">
+  <%= u.label :first_name %><br>
+  <%= u.text_field :first_name %>
+</div>
+
+<div class="field">
+  <%= u.label :surname %><br>
+  <%= u.text_field :surname %>
+</div>
+
+<div class="field">
+  <%= u.label :gender %><br>
+  <% UserInfo.genders.keys.each do |g|%>
+  <%= u.label g %>
+  <%= u.radio_button :gender, g %>
+  <% if g == user.user_info.gender %>
+  <% u.radio_button :gender, :checked => true %>
+  <% end %>
+  <% end %>
+</div>
+<% end %>
+<br>
+<div class="field">
+  <%= f.label :password %> <br />
+  <%= f.password_field :password, autocomplete: "new-password" %>
+  <% if @minimum_password_length %>
+  <br />
+  <em><%= @minimum_password_length %> characters minimum</em>
+  <% end %>
+</div>
+
+<div class="field">
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+</div>
+<br>
+<div class="actions">
+  <%= f.submit "Submit" %>
+</div>
 <% end %>
 <br>

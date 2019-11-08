@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  #store action method required to store the url of the previous page, so once user is authenticated they will be returned back to their previous page
   after_action :store_action
   
   rescue_from CanCan::AccessDenied do |exception|
@@ -8,6 +9,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #get requests from the registrations and sign up pages should not be stored
   def store_action
     return unless request.get? 
     if (request.path != "/users/sign_in" &&

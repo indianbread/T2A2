@@ -1,20 +1,20 @@
 <%= form_with model: address, local: true do |form| %>
- <% if address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(listing.errors.count, "error") %> prohibited this address from being saved:</h2>
+<% if address.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(listing.errors.count, "error") %> prohibited this address from being saved:</h2>
 
-      <ul>
-      <% address.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% address.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 <div>
   <%= form.label :street_number %>
   <%= form.text_field :street_number, :required => true, :autofocus => true, :placeholder => "Enter your unit/house number and street name"%>
-  </div>
- <div>
+</div>
+<div>
   <%= form.label :suburb %>
   <%= form.text_field :suburb, :required =>true %>
 </div>
@@ -23,14 +23,14 @@
   <%= form.number_field :postcode, min: 0 %>
 </div>
 <div>
-    <%= form.label :state %>
-    <%= form.select :state, [ "VIC", "NSW","QLD","NT","WA","ACT","TAS" ] %>
+  <%= form.label :state %>
+  <%= form.select :state, [ "VIC", "NSW","QLD","NT","WA","ACT","TAS" ] %>
 </div>
 <div>
-    <%= form.label :country %>
-    <%= form.text_field :country %>
+  <%= form.label :country %>
+  <%= form.text_field :country %>
 </div>
 <div>
-<%= form.submit %>
+  <%= form.submit %>
 </div>
 <% end %>

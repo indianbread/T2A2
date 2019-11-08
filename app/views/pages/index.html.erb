@@ -1,27 +1,26 @@
 <div class="jumbotron jumbotron-cover-image">
-<div class="container">
-<h1 class="imgtext">Welcome to the Korean Skin Care Marketplace</h1>
-<p class = "imgtext">A place for buying and selling Korean skin care</p>
-<%= link_to 'Shop Now', products_path, class:"btn btn-outline-dark", role:"button" %>
+  <div class="container">
+    <h1 class="imgtext">Welcome to the Korean Skin Care Marketplace</h1>
+    <p class="imgtext">A place for buying and selling Korean skin care</p>
+    <%= link_to 'Shop Now', products_path, class:"btn btn-outline-dark", role:"button" %>
+  </div>
 </div>
 </div>
-</div>
-<div class = "row one">
-<h2>Recent Product Listings</h2>
+<div class="row one">
+  <h2>Recent Product Listings</h2>
 </div>
 <div class="row">
-<% @recent_products.each do |product|%>
-<div class="card" style="width: 18rem;">
-  <%= image_tag product.picture, class:"card-img-top", alt:"Card image cap" %>
-  <div class="card-body diffbg">
-    <h5 class="card-title"><%= product.name %> <%= number_to_currency(product.price) %></h5>
-    <p class="card-text"><%= product.description%></p>
+  <% @recent_products.each do |product|%>
+  <div class="card" style="width: 18rem;">
+    <%= image_tag product.picture, class:"card-img-top", alt:"Card image cap" %>
+    <div class="card-body diffbg">
+      <h5 class="card-title"><%= product.name %> <%= number_to_currency(product.price) %></h5>
+      <p class="card-text"><%= product.description%></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'View Details', product_path(product), class:"btn btn-outline-dark" %>
+    </div>
   </div>
-  <div class="card-footer">
-   <%= link_to 'View Details', product_path(product), class:"btn btn-outline-dark" %>
-   </div>
-</div>
-<% end %>
+  <% end %>
 </div>
 </div>
-

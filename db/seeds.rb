@@ -105,9 +105,8 @@ product = Product.create(
               brand_id: (1..10).to_a.sample,
               name: product_name.sample,
               price: (20..100).to_a.sample,
-              description: product_description.sample
-              used: 0
-              )
+              description: product_description.sample,
+              used: 0)
 product.picture.attach(io: File.open(path), filename: file)
 product.save
 puts "product created"

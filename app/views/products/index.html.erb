@@ -38,7 +38,6 @@ Sort By:
     <small class="text-muted"><%= product.category.name %> <br>Listed on <%= product.created_at.localtime.to_date%></small> 
     <p class="card-text"><%= product.description%></p>
   </div>
-  
   <div class="card-footer">
    <%= link_to 'View Details', product_path(product), class:"btn btn-outline-dark" %>
    </div>

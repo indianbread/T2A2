@@ -63,7 +63,4 @@ class UsersController < ApplicationController
      params.require(:user).permit(:email, :password, :password_confirmation,:current_password, :admin, user_info_attributes: [:first_name, :surname, :gender], addresses_attributes: [:street_number,:suburb, :postcode, :state, :country])
   end
 
-  # def set_user
-  #   @user = User.find(params[:id])
-  # end
 end

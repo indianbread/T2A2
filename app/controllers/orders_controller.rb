@@ -1,16 +1,12 @@
 class OrdersController < ApplicationController
-  # before_create :update_total
-  # before_create :update_status
-  load_and_authorize_resource
+  load_resource
   skip_load_resource :only => [:new, :create]
-
   
   def index
     @orders = Order.all.sort_by { |k,v| k["created_at"]}.reverse
   end
 
   def show
-
   end
 
   def edit
@@ -53,18 +49,4 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:user_id, :total_amount, order_lines_attributes: [:product_id])
    end
 
-  # def update_status
-  #   if self.status == nil?
-  #     self.status = "In progress"
-  #   end
-  # end
-  # def calculate_total
-  #   self.order_lines.collect { |item| item.product.price }.sum
-  # end
-  
-  # def update_total
-  #   self.total_amount = calculate_total
-  # end
-
-  
 end

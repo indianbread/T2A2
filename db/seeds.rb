@@ -92,11 +92,11 @@ puts "#{ingredient} created"
 end
 
 for i in 1..30
-product_name = ["Soft Moist Moisturising Cream", "I'm Real Mask Sheet", "Rice Water Brightening Cleanser", "Bio-Peel Gauze Peelign Wine", "Supple Preparation Uncscented Toner", "Advance Snail Mucin 96 Snail Essence", "Relief Moisture Green Ampoule"]
+product_name = ["Soft Moist Moisturising Cream", "I'm Real Mask Sheet", "Rice Water Brightening Cleanser", "Bio-Peel Gauze Peeling Wine", "Supple Preparation Uncscented Toner", "Advance Snail Mucin 96 Snail Essence", "Relief Moisture Green Ampoule"]
 product_description = [ "A light weight moisturising cream suitable for sensitive skin","a hydrating and exfoliating toner that preps your skin for the rest of your skincare routine", "a mild exfoliating cream that helps hydrate, decongest, exfoliate and clear out impurities from the skin", "a gentle acne-fighting and soothing cleanser", "a soothing and cooling mask that instantly hydrates and nourishes the skin", "a moisturising, brightening and anti-wrinkle treatment for your eyes", "an oil-free ampoule that's perfect for hydrating oily but dehydrated skin"]
 files = ["prod1.jpeg","prod2.jpeg","prod3.jpg","prod4.jpg","prod5.jpeg","prod6.jpeg"]
 paths = ["app/assets/images/products/prod1.jpeg","app/assets/images/products/prod2.jpeg","app/assets/images/products/prod3.jpg","app/assets/images/products/prod4.jpg", "app/assets/images/products/prod5.jpeg", "app/assets/images/products/prod6.jpeg"]
-index = (1..5).to_a.sample
+index = (0..5).to_a.sample
 file = files[index]
 path = paths[index]
 product = Product.create(

@@ -1,11 +1,8 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only:[:show, :edit, :new, :update, :delete]
-  # before_action :set_product, only:[ :show, :edit, :update, :destroy]
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
   skip_authorize_resource :only => [:index]
- 
-  # before_action :set_user_products, only: [ :edit, :update, :delete ]
   
   def index
     @q = Product.where(sold: false).ransack(params[:q])
@@ -20,7 +17,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  
   def show
     session = Stripe::Checkout::Session.create(
       payment_method_types: [ 'card' ],
@@ -101,20 +97,5 @@ end
   def product_params
     params.require(:product).permit( :user_id, :category_id, :brand_id, :name, :expiry_date, :used, :price, :description, :sold, :picture, :receipt, {:ingredient_ids => []}, ingredients_attributes: [:name], category_attributes: [:name], brand_attributes: [:name], orders_attributes: [:order_id, :total_amount], order_line_attributes: [:product_id, :order_id])
   end
-
-
-  # def set_product
-  #   id = params[:id]
-  #   @product = Product.find(id)
-  #   @brand = @product.brand
-  #   @category = @product.category
-  #   @ingredients = @product.ingredients
-  # end
-
-
-  # def set_user_products
-  #   @product = current_user.products.find_by_id(params[:id])
-  # end
-
 
 end

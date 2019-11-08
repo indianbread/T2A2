@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :set_address, only: [:edit, :update, :destroy]
+  # from cancancan gem to set the address and authorise the current user's permission to view the content
   load_and_authorize_resource
   skip_load_resource :only => [:new, :create]
   def index
@@ -44,11 +44,6 @@ class AddressesController < ApplicationController
   end
 
   private
-
-  # def set_address
-  #   id = params[:id]
-  #   @address = Address.find(id)
-  # end
 
   def address_params
     params.require(:address).permit(:user_id, :street_number, :suburb, :postcode, :state, :country)

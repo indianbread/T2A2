@@ -51,22 +51,22 @@ If time permits, I would like to attempt to implement:
 
 ### Sitemap
 
-![Korean Skin Care Marketplace site map](/docs/KSC-sitemap.svg)
+![Korean Skin Care Marketplace site map](/app/assets/images/docs/KSC-sitemap.svg)
 
 
 #### Screenshots 
 
-![Desktop home page screenshot](/docs/screenshot-desktop-home.png)  
+![Desktop home page screenshot](/app/assets/images/docs/screenshot-desktop-home.png)  
 
-![Admin dashboard screenshot](/docs/screenshot-admindashboard.png)
+![Admin dashboard screenshot](/app/assets/images/docs/screenshot-admindashboard.png)
 
-![New product form screenshot](/docs/screenshot-newproduct.png)  
+![New product form screenshot](/app/assets/images/docs/screenshot-newproduct.png)  
 
-![Desktop product listings page](/docs/screenshot-productlistings.png)  
+![Desktop product listings page](/app/assets/images/docs/screenshot-productlistings.png)  
 
-![Desktop product details page](docs/screenshot-showproduct.png)  
+![Desktop product details page](/app/assets/imagesdocs/screenshot-showproduct.png)  
 
-![Mobile product detais page](docs/screenshot-mobile-viewproduct.png)  
+![Mobile product detais page](/app/assets/imagesdocs/screenshot-mobile-viewproduct.png)  
 
 
 
@@ -86,21 +86,21 @@ The SQL database used to store the data is PostgreSQL.
 ## R13	Wireframes for your app
 
 
-![Home Page Wireframe](/docs/wireframe-homepage.png)  
+![Home Page Wireframe](/app/assets/images/docs/wireframe-homepage.png)  
 
-![Admin Dashboard Wireframe](/docs/wireframe-admindashborad.png)  
+![Admin Dashboard Wireframe](/app/assets/images/docs/wireframe-admindashborad.png)  
 
-![New product listing wireframe](/docs/wireframe-addnew.png)  
+![New product listing wireframe](/app/assets/images/docs/wireframe-addnew.png)  
 
-![Desktop product listing page](/docs/wireframe-productlistings.png)  
+![Desktop product listing page](/app/assets/images/docs/wireframe-productlistings.png)  
 
-![Desktop product details page](/docs/wireframe-viewproduct.png)  
+![Desktop product details page](/app/assets/images/docs/wireframe-viewproduct.png)  
 
-![Mobile product details page](/docs/wireframe-mobileviewproduct.png)  
+![Mobile product details page](/app/assets/images/docs/wireframe-mobileviewproduct.png)  
 
 
 ## R14	Entity-Relationship Diagram
-![Entity-relationship diagram](/docs/rails-erd.svg)
+![Entity-relationship diagram](/app/assets/images/docs/rails-erd.svg)
 
 ## R15	Explain the different high-level components (abstractions) in your app  
 
@@ -444,15 +444,15 @@ end
 I am using Trello to break down the project into small tasks and to keep track of the progress of each task and any bugs or issues which arises. I have assigned a due date for each high priority task to ensure that I am able to complete the project within the allocated time frame. I have included the smaller tasks in the Trello board but have not assigned a due date as the tasks will be completed incrementally as I code the application.  
 
 
-![Trello Screenshot](/docs/trello-251019.png)  
+![Trello Screenshot](/app/assets/images/docs/trello-251019.png)  
 
-![Trello Screenshot](/docs/trello-291019.png)  
+![Trello Screenshot](/app/assets/images/docs/trello-291019.png)  
 
-![Trello Screenshot](/docs/trello-011119.png)
+![Trello Screenshot](/app/assets/images/docs/trello-011119.png)
 
-![Trello Screenshot](/docs/trello-031119.png)
+![Trello Screenshot](/app/assets/images/docs/trello-031119.png)
 
-![Trello Screenshot](/docs/trello-071119.png)
+![Trello Screenshot](/app/assets/images/docs/trello-071119.png)
 
-![Trello Screenshot](/docs/trello-091119.png)
+![Trello Screenshot](/app/assets/images/docs/trello-091119.png)
 
